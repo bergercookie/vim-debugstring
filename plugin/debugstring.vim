@@ -13,27 +13,24 @@ set cpo&vim
 let g:debugCnt = 0
 
 " Debug string - Vim {{{
-function! DebugVim()
+function! s:debugVim()
     :put a
 endfunc
-
 " }}}
 
 " Debug string - C/C++ {{{
-function! DebugC()
+function! s:debugC()
     let l:debugStr = "std::cout << \"TODO - Remove me. Kalimera ==> \""
     let l:debugBoth = l:debugStr . " << " . g:debugCnt .   " << std::endl;"
     :put=l:debugBoth
     let g:debugCnt = g:debugCnt + 1
 endfunc
-
 " }}}
 
 " Debug string - Python {{{
-function! DebugPython()
+function! s:debugPython()
     :put c
 endfunc
-
 " }}}
 
 " Debug string - Ruby {{{
@@ -54,9 +51,9 @@ endfunc
 " TODO - How can somebody easily change the shortcut key?
 augroup debugstring_mappings
     autocmd!
-    autocmd Filetype vim nnoremap <buffer> <Plug>DumpDebugString  :call DebugVim()<CR>
-    autocmd Filetype c,cpp nnoremap <buffer> <Plug>DumpDebugString :call DebugC()<CR>
-    autocmd Filetype python nnoremap <buffer> <Plug>DumpDebugString  :call DebugPython()<CR>
+    autocmd Filetype vim nnoremap <buffer> <Plug>DumpDebugString  :call s:debugVim()<CR>
+    autocmd Filetype c,cpp nnoremap <buffer> <Plug>DumpDebugString :call s:debugC()<CR>
+    autocmd Filetype python nnoremap <buffer> <Plug>DumpDebugString  :call s:debugPython()<CR>
 augroup END
 
 " Make the mapping only if the user hasn't done so already
