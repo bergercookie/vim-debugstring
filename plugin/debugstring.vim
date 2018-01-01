@@ -8,9 +8,10 @@
 " @section Introduction, intro
 "
 "
-" @setting(name) facilitates in standard debugging operations (e.g., segfaults). It does
-" that by facilitating the ubiquitous printf()-debugging i.e., scatter
-" logging statements around the various code snippets that you want to test.
+" @plugin(name) aims to automate standard debugging operations (e.g.,
+" segfaults). It does that by facilitating the ubiquitous printf()-debugging
+" i.e., scatter logging statements around the various code snippets that you
+" want to test.
 "
 " The form and syntax of the logging statements target the language at hand
 " (e.g., use printf() in C/C++ but puts() in Ruby)
@@ -20,6 +21,7 @@
 " To add a logging statement either use the default normal mode mapping
 " (@setting(default_dump_debug_map)) or define your own
 "
+" nmap <your-key-combination> <Plug>DumpDebugString
 
 ""
 " @section Functions
@@ -27,7 +29,7 @@
 " Each debug* method supports one (or a family of) programming languages. This
 " way it takes care of the different logging directives + different syntaxes.
 "
-" If you want to extend @setting(name) for language not yet suppoprted you just
+" If you want to extend @plugin(name) for language not yet suppoprted you just
 " have to implement a corresponding s:debug* method and also add a line for that
 " language in the @setting(debugstring_mappings) group
 "
@@ -178,6 +180,10 @@ function! s:debugPhp()
     call s:debugShell()
 endfunc " }}}
 
+""
+" Wrapper around the low-level debug* methods.
+" It also takes care of incrementing the g:debugCounter
+"
 function! s:debugFunctionWrapper(debugFn)
     let b:winvar = winsaveview()
 
@@ -189,18 +195,15 @@ function! s:debugFunctionWrapper(debugFn)
     call s:incrDebugCounter()
 
     call winrestview(b:winvar)
+
+    " directly move to the next line
+    return getcurpos()[1] + 2
 endfunc " }}}
 
 
-" TODO - Method to delete all the debugging strings
-
-" TODO - In current buffer
-
-" TODO - In all open buffers
-
 ""
 " Autocommands group containing the mappings of <Plug>DumpDebugString method for
-" the cases that @setting(name) supports
+" the cases that @plugin(name) supports
 "
 " @setting debugstring_mappings
 "
@@ -216,7 +219,7 @@ augroup debugstring_mappings
                 \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugHaskell")<CR>
     autocmd Filetype ruby nnoremap       <buffer> <silent>
                 \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugRuby")<CR>
-    autocmd Filetype shell nnoremap      <buffer> <silent>
+    autocmd Filetype sh nnoremap      <buffer> <silent>
                 \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugShell")<CR>
     autocmd Filetype fortran nnoremap    <buffer> <silent>
                 \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugFortran")<CR>

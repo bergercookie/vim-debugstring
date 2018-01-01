@@ -11,17 +11,19 @@ CONTENTS                                                *debugstring-contents*
 
 ==============================================================================
 INTRODUCTION                                               *debugstring-intro*
+     _      _                     _        _              ~
+    | |    | |                   | |      (_)             ~
+  __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __   __ _  ~
+ / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | ~
+| (_| |  __/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | ~
+ \__,_|\___|_.__/ \__,_|\__, |___/\__|_|  |_|_| |_|\__, | ~
+                         __/ |                      __/ | ~
+                        |___/                      |___/  ~
 
 
-     _      _                     _        _              ~     | |    | |
-| |      (_)             ~   __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __
-__ _  ~  / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | ~ | (_| |
-__/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | ~  \__,_|\___|_.__/
-\__,_|\__, |___/\__|_|  |_|_| |_|\__, | ~                          __/ |
-__/ | ~                         |___/                      |___/  ~
 
-|g:name| facilitates in standard debugging operations (e.g., segfaults). It
-does that by facilitating the ubiquitous printf()-debugging i.e., scatter
+debugstring aims to automate standard debugging operations (e.g., segfaults).
+It does that by facilitating the ubiquitous printf()-debugging i.e., scatter
 logging statements around the various code snippets that you want to test.
 
 The form and syntax of the logging statements target the language at hand
@@ -33,6 +35,7 @@ CONFIGURATION                                             *debugstring-config*
 To add a logging statement either use the default normal mode mapping
 (|g:default_dump_debug_map|) or define your own
 
+nmap <your-key-combination> <Plug>DumpDebugString
 
                                             *g:debugstringAlwaysIncludeHeader*
 Set this to false if you want to print just the logging statement without any
@@ -54,8 +57,8 @@ FUNCTIONS                                              *debugstring-functions*
 Each debug* method supports one (or a family of) programming languages. This
 way it takes care of the different logging directives + different syntaxes.
 
-If you want to extend |g:name| for language not yet suppoprted you just have
-to implement a corresponding s:debug* method and also add a line for that
+If you want to extend debugstring for language not yet suppoprted you just
+have to implement a corresponding s:debug* method and also add a line for that
 language in the |g:debugstring_mappings| group
 
 

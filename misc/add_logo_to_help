@@ -2,8 +2,8 @@
 
 set -e
 
-logo_file="${BASH_SOURCE[0]}"
-help_file=`basename "${logo_file}/../doc/debugstring.txt"`
+logo_file="`dirname ${BASH_SOURCE[0]}`/logo.txt"
+help_file="`dirname ${logo_file}`/../doc/debugstring.txt"
 
 line_num=`grep -n "INTRODUCTION" "${help_file}" | cut -d':' -f1`
 
@@ -16,7 +16,7 @@ fi
 f="`mktemp`"
 head -n "${line_num}" "${help_file}" > "${f}"
 cat "${logo_file}" >> "${f}"
-tail -n +`"${line_num}"+1 | bc` >> "${f}"
+tail -n +`echo "${line_num}"+1 | bc` "${help_file}"  >> "${f}"
 
 cat "${f}" > "${help_file}"
 rm "${f}"

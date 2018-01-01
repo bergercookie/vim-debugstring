@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+vimdoc "${BUNDLE}/vim-debugstring"
+"${BUNDLE}/vim-debugstring/misc/add_logo_to_help"
+
+
