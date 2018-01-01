@@ -1,0 +1,9 @@
+{
+  "name"          : "debugstring",
+  "version"       : "0.1",
+  "author"        : "Nikos Koukis <nickkouk@gmail.com>",
+  "maintainer"    : "Nikos Koukis <nickkouk@gmail.com>",
+  "repository"    : {"type": "git", "url": "git://github.com/bergercookie/vim-debugstring.git"},
+  "dependencies"  : {},
+  "description"   : "Debug, printf()-style, at the speed of light"
+}

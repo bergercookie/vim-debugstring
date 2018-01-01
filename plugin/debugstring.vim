@@ -1,6 +1,7 @@
-" debugstring.vim - A Git wrapper so awesome, it should be illegal
+" debugstring.vim - Debug, printf()-style, at the speed of light
 " Maintainer:   Nikos Koukis <http://bergercookie.github.io/>
 " Version:      0.1
+
 
 " Introductory moves {{{
 " if exists("g:loaded_debugstring") || &cp
@@ -15,24 +16,27 @@ set cpo&vim
 let s:debugCounter = 0
 let s:debugCounterStep = 1
 
-" Debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
+" By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
 let s:debugPrefixStr =
             \ "[" . fnamemodify(bufname("%"), ":t") .
             \ ":" .  getcurpos()[1] .
             \ "] DEBUGGING STRING ==> "
 
-function! g:ResetDebugCounter()
+" Supplementary functions {{{
+function! s:resetDebugCounter()
     let s:debugCounter = 0
-endfunc " }}}
+endfunc
 
 function! s:incrDebugCounter()
     let s:debugCounter += s:debugCounterStep
 endfunc " }}}
 
+command -nargs=0 ResetDebugCounter :call <SID>resetDebugCounter()
+
 if !hasmapto('<Plug>DumpDebugString')
   nmap <unique> <Leader>ds  <Plug>DumpDebugString
 endif
-let g:debugstringAlwaysIncludeHeader = 1 " Include Header in place?
+let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 
 
 " Debug string - Vim {{{
@@ -107,12 +111,16 @@ function! s:debugPhp()
 endfunc " }}}
 
 function! s:debugFunctionWrapper(debugFn)
+    let b:winvar = winsaveview()
+
     " call the corresponding function
     let s:processing = function(a:debugFn)
     let @x = s:processing()
 
     " increase the counter
-    :call s:incrDebugCounter()
+    call s:incrDebugCounter()
+
+    call winrestview(b:winvar)
 endfunc " }}}
 
 
@@ -124,17 +132,28 @@ endfunc " }}}
 
 augroup debugstring_mappings
     autocmd!
-    autocmd Filetype vim nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugVim")<CR>
-    autocmd Filetype c,cpp nnoremap <buffer> <Plug>DumpDebugString :<C-U>exe <SID>debugFunctionWrapper("s:debugC")<CR>
-    autocmd Filetype python nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPython")<CR>
-    autocmd Filetype haskell nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugHaskell")<CR>
-    autocmd Filetype ruby nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugRuby")<CR>
-    autocmd Filetype shell nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugShell")<CR>
-    autocmd Filetype fortran nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugFortran")<CR>
-    autocmd Filetype java nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJava")<CR>
-    autocmd Filetype javascript nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJavascript")<CR>
-    autocmd Filetype php nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPhp")<CR>
-    autocmd Filetype R nnoremap <buffer> <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugR")<CR>
+    autocmd Filetype vim nnoremap        <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugVim")<CR>
+    autocmd Filetype c,cpp nnoremap      <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugC")<CR>
+    autocmd Filetype python nnoremap     <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPython")<CR>
+    autocmd Filetype haskell nnoremap    <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugHaskell")<CR>
+    autocmd Filetype ruby nnoremap       <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugRuby")<CR>
+    autocmd Filetype shell nnoremap      <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugShell")<CR>
+    autocmd Filetype fortran nnoremap    <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugFortran")<CR>
+    autocmd Filetype java nnoremap       <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJava")<CR>
+    autocmd Filetype javascript nnoremap <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJavascript")<CR>
+    autocmd Filetype php nnoremap        <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPhp")<CR>
+    autocmd Filetype R nnoremap          <buffer> <silent>
+                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugR")<CR>
 augroup END
 
 let &cpo = s:save_cpo

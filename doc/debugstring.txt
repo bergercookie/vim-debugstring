@@ -1,0 +1,8 @@
+*debugstring.txt*	Debug, printf()-style, at the speed of light
+Nikos Koukis <nickkouk@gmail.com>                                *debugstring*
+
+==============================================================================
+CONTENTS                                                *debugstring-contents*
+
+
+vim:tw=78:ts=8:ft=help:norl:
