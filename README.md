@@ -9,12 +9,15 @@ logging statements around the various code snippets that you want to test.
 The form and syntax of the logging statements target the language at hand
 (e.g., use printf() in C/C++ but puts() in Ruby)
 
-For a more detailed outline of `debugstring` check the doc/debugstring.vim file
+![demo_gif](https://media.giphy.com/media/3oFzmmAA3bMKQEr65a/giphy.gif)
+
+For a more detailed outline of `debugstring` check
+[doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)
 
 ## Usage
 
-TODO: Describe what are the standard operations for this plugin - What does it
-support?
+Use the mapping of your choice to place unique logging directives during
+debugging times. Default mapping is: `<Leader>ds`
 
 ## Installation
 
@@ -48,7 +51,7 @@ file
 
 # TODO
 
-- [] Method to delete all the debugging strings in all "touched" buffers
-- [] Method to delete all the debugging strings in current buffer
+- [ ] Method to delete all the debugging strings in all "touched" buffers
+- [ ] Method to delete all the debugging strings in current buffer
 
 
