@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+logo_file="${BASH_SOURCE[0]}"
+help_file=`basename "${logo_file}/../doc/debugstring.txt"`
+
+line_num=`grep -n "INTRODUCTION" "${help_file}" | cut -d':' -f1`
+
+if [[ -z "${line_num}" ]]; then
+    echo "Intro section was not found. Exiting..."
+    exit 1
+fi
+
+# add the logo to the help page
+f="`mktemp`"
+head -n "${line_num}" "${help_file}" > "${f}"
+cat "${logo_file}" >> "${f}"
+tail -n +`"${line_num}"+1 | bc` >> "${f}"
+
+cat "${f}" > "${help_file}"
+rm "${f}"
+
+

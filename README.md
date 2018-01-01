@@ -6,7 +6,7 @@ will probably not work as expected
 ## Purpose
 
 Purpose of current plugin is to facilitate in standard debugging operations
-(e.g., segfaults) It does that by facilitating the ubiquitous `printf ()`
+(e.g., segfaults). It does that by facilitating the ubiquitous `printf ()`
 debugging i.e., scatter logging statements around the various code snippets that
 you want to test.
 

@@ -3,6 +3,81 @@ Nikos Koukis <nickkouk@gmail.com>                                *debugstring*
 
 ==============================================================================
 CONTENTS                                                *debugstring-contents*
+  1. Introduction..........................................|debugstring-intro|
+  2. Configuration........................................|debugstring-config|
+  3. Commands...........................................|debugstring-commands|
+  4. Functions.........................................|debugstring-functions|
+  5. About.................................................|debugstring-about|
+
+==============================================================================
+INTRODUCTION                                               *debugstring-intro*
+
+
+     _      _                     _        _              ~     | |    | |
+| |      (_)             ~   __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __
+__ _  ~  / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | ~ | (_| |
+__/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | ~  \__,_|\___|_.__/
+\__,_|\__, |___/\__|_|  |_|_| |_|\__, | ~                          __/ |
+__/ | ~                         |___/                      |___/  ~
+
+|g:name| facilitates in standard debugging operations (e.g., segfaults). It
+does that by facilitating the ubiquitous printf()-debugging i.e., scatter
+logging statements around the various code snippets that you want to test.
+
+The form and syntax of the logging statements target the language at hand
+(e.g., use printf() in C/C++ but puts() in Ruby)
+
+==============================================================================
+CONFIGURATION                                             *debugstring-config*
+
+To add a logging statement either use the default normal mode mapping
+(|g:default_dump_debug_map|) or define your own
+
+
+                                            *g:debugstringAlwaysIncludeHeader*
+Set this to false if you want to print just the logging statement without any
+additional directive like '#include <stsdio.h' Applicable only in libraries
+that the logging directive is part of an external library
+
+
+==============================================================================
+COMMANDS                                                *debugstring-commands*
+
+:ResetDebugCounter                                        *:ResetDebugCounter*
+  Reset the debugging counter
+
+
+==============================================================================
+FUNCTIONS                                              *debugstring-functions*
+
+
+Each debug* method supports one (or a family of) programming languages. This
+way it takes care of the different logging directives + different syntaxes.
+
+If you want to extend |g:name| for language not yet suppoprted you just have
+to implement a corresponding s:debug* method and also add a line for that
+language in the |g:debugstring_mappings| group
+
+
+==============================================================================
+ABOUT                                                      *debugstring-about*
+
+
+Original version of this package is written by Nikos Koukis - bergercookie
+
+    https://github.com/bergercookie
+
+  * Thanks to Steve Losh for writing the excellent book "Learn Vimscript the
+    Hard Way". If that helped you as much as it helped me seriously consider
+    buying either the e-book or paperback version of it.
+
+    http://learnvimscriptthehardway.stevelosh.com/
+
+  * Thanks to tpope for providing so much quality vimscript code to work with
+    and get constant inspiration from while writing this
+
+    https://github.com/tpope/
+
 
 
 vim:tw=78:ts=8:ft=help:norl:

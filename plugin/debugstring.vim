@@ -3,6 +3,56 @@
 " Version:      0.1
 
 
+
+""
+" @section Introduction, intro
+"
+"
+" @setting(name) facilitates in standard debugging operations (e.g., segfaults). It does
+" that by facilitating the ubiquitous printf()-debugging i.e., scatter
+" logging statements around the various code snippets that you want to test.
+"
+" The form and syntax of the logging statements target the language at hand
+" (e.g., use printf() in C/C++ but puts() in Ruby)
+
+""
+" @section Configuration, config
+" To add a logging statement either use the default normal mode mapping
+" (@setting(default_dump_debug_map)) or define your own
+"
+
+""
+" @section Functions
+"
+" Each debug* method supports one (or a family of) programming languages. This
+" way it takes care of the different logging directives + different syntaxes.
+"
+" If you want to extend @setting(name) for language not yet suppoprted you just
+" have to implement a corresponding s:debug* method and also add a line for that
+" language in the @setting(debugstring_mappings) group
+"
+
+
+""
+" @section About
+"
+" Original version of this package is written by Nikos Koukis - bergercookie
+"
+"     https://github.com/bergercookie
+"
+" * Thanks to Steve Losh for writing the excellent book "Learn Vimscript the
+"     Hard Way". If that helped you as much as it helped me seriously consider
+"     buying either the e-book or paperback version of it.
+"
+"     http://learnvimscriptthehardway.stevelosh.com/
+"
+" * Thanks to tpope for providing so much quality vimscript code to work with
+"     and get constant inspiration from while writing this
+"
+"     https://github.com/tpope/
+"
+
+
 " Introductory moves {{{
 " if exists("g:loaded_debugstring") || &cp
 "   finish
@@ -23,19 +73,37 @@ let s:debugPrefixStr =
             \ "] DEBUGGING STRING ==> "
 
 " Supplementary functions {{{
+""
+" Reset the debugging counter.
+"
 function! s:resetDebugCounter()
     let s:debugCounter = 0
 endfunc
 
+""
+" Reset the debugging counter
+"
+command -nargs=0 ResetDebugCounter :call <SID>resetDebugCounter()
+
+""
+" Increment the debugging counter
+" This is called automaticall every time a debug* method is used
+"
 function! s:incrDebugCounter()
     let s:debugCounter += s:debugCounterStep
 endfunc " }}}
 
-command -nargs=0 ResetDebugCounter :call <SID>resetDebugCounter()
-
 if !hasmapto('<Plug>DumpDebugString')
-  nmap <unique> <Leader>ds  <Plug>DumpDebugString
+    ""@setting default_dump_debug_map
+    "
+    nmap <unique> <Leader>ds  <Plug>DumpDebugString
 endif
+""
+" Set this to false if you want to print just the logging statement without any
+" additional directive like '#include <stsdio.h'
+" Applicable only in libraries that the logging directive is part of an external
+" library
+"
 let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 
 
@@ -130,6 +198,12 @@ endfunc " }}}
 
 " TODO - In all open buffers
 
+""
+" Autocommands group containing the mappings of <Plug>DumpDebugString method for
+" the cases that @setting(name) supports
+"
+" @setting debugstring_mappings
+"
 augroup debugstring_mappings
     autocmd!
     autocmd Filetype vim nnoremap        <buffer> <silent>
