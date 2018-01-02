@@ -18,10 +18,24 @@ debugstring aims to automate standard debugging operations (e.g., segfaults).
 It does that by facilitating the ubiquitous `printf()-debugging` i.e., scatter
 logging statements around the various code snippets that you want to test.
 
+![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo.gif)
+
 The form and syntax of the logging statements target the language at hand
 (e.g., use `printf()` in C/C++ but `puts()` in Ruby)
 
-![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo.gif)
+Currently the following languages are supported:
+
+- C/C++
+- Fortran
+- Haskell
+- Java
+- javascript
+- PHP
+- Python
+- Ruby
+- Shell
+- Vim
+
 
 For a more detailed outline of `debugstring` check
 [doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)
@@ -49,6 +63,9 @@ please raise an
 
 ```bash
 git clone https://github.com/bergercookie/vim-debustring.git ~/.vim/bundle/vim-debugstring
+
+# If you're using submodules to handle your vim-dotfiles:
+cd $BUNDLE; git submodule add https://github.com/bergercookie/vim-debustring.git
 ```
 
 ### Manual installation
