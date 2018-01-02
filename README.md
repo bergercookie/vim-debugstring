@@ -9,7 +9,7 @@ logging statements around the various code snippets that you want to test.
 The form and syntax of the logging statements target the language at hand
 (e.g., use printf() in C/C++ but puts() in Ruby)
 
-![demo_gif](https://media.giphy.com/media/3oFzmmAA3bMKQEr65a/giphy.gif)
+![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo.gif)
 
 For a more detailed outline of `debugstring` check
 [doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)
@@ -17,7 +17,13 @@ For a more detailed outline of `debugstring` check
 ## Usage
 
 Use the mapping of your choice to place unique logging directives during
-debugging times. Default mapping is: `<Leader>ds`
+debugging times. 
+
+```vim
+nmap <your-key-combination> <Plug>DumpDebugString
+```
+
+Default mapping is: `<Leader>ds`
 
 ## Installation
 
