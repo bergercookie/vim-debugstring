@@ -1,14 +1,14 @@
 # vim-debugstring
 
 ```
-     _      _                     _        _              
-    | |    | |                   | |      (_)             
-  __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __   __ _  
- / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | 
-| (_| |  __/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | 
- \__,_|\___|_.__/ \__,_|\__, |___/\__|_|  |_|_| |_|\__, | 
-                         __/ |                      __/ | 
-                        |___/                      |___/  
+     _      _                     _        _
+    | |    | |                   | |      (_)
+  __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __   __ _
+ / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` |
+| (_| |  __/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| |
+ \__,_|\___|_.__/ \__,_|\__, |___/\__|_|  |_|_| |_|\__, |
+                         __/ |                      __/ |
+                        |___/                      |___/
 
 ```
 
@@ -32,7 +32,7 @@ Use the mapping of your choice to place unique logging directives during
 debugging times.
 
 ```vim
-nmap <your-key-combination> <Plug>DumpDebugString
+nnoremap <your-key-combination> <Plug>DumpDebugString
 ```
 
 Default mapping is: `<Leader>ds`
@@ -53,8 +53,8 @@ git clone https://github.com/bergercookie/vim-debustring.git ~/.vim/bundle/vim-d
 
 ### Manual installation
 
-Copy the plugin files into the corresponding directories under `${HOME}/.vim`
-(Linux) or `$VIMFILES` (Windows).
+Copy the plugin files to their corresponding directories under `${HOME}/.vim`
+(Linux) or `$HOME/vimfiles` (Windows).
 
 ## Contributing
 
@@ -77,5 +77,6 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 
 - [ ] Method to delete all the debugging strings in all "touched" buffers
 - [ ] Method to delete all the debugging strings in current buffer
+- [ ] Method to print a name of a variable easily
 
 
