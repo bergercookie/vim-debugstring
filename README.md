@@ -1,13 +1,16 @@
 # vim-debugstring
 
-     _      _                     _        _              ~
-    | |    | |                   | |      (_)             ~
-  __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __   __ _  ~
- / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | ~
-| (_| |  __/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | ~
- \__,_|\___|_.__/ \__,_|\__, |___/\__|_|  |_|_| |_|\__, | ~
-                         __/ |                      __/ | ~
-                        |___/                      |___/  ~
+```
+     _      _                     _        _              
+    | |    | |                   | |      (_)             
+  __| | ___| |__  _   _  __ _ ___| |_ _ __ _ _ __   __ _  
+ / _` |/ _ \ '_ \| | | |/ _` / __| __| '__| | '_ \ / _` | 
+| (_| |  __/ |_) | |_| | (_| \__ \ |_| |  | | | | | (_| | 
+ \__,_|\___|_.__/ \__,_|\__, |___/\__|_|  |_|_| |_|\__, | 
+                         __/ |                      __/ | 
+                        |___/                      |___/  
+
+```
 
 ## Purpose
 
@@ -67,7 +70,8 @@ file
 ## Self Promotion
 
 In case you like the plugin, you might as well [star it on
-Github](https://github.com/bergercookie/vim-debugstring) or 
+Github](https://github.com/bergercookie/vim-debugstring) or [rate it on
+vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 
 ## TODO
 

@@ -69,10 +69,13 @@ let s:debugCounter = 0
 let s:debugCounterStep = 1
 
 " By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
-let s:debugPrefixStr =
-            \ "[" . fnamemodify(bufname("%"), ":t") .
-            \ ":" .  getcurpos()[1] .
-            \ "] DEBUGGING STRING ==> "
+function! s:debugPrefixStr()
+  let l:debug_str =
+        \ "[" . fnamemodify(bufname("%"), ":t") .
+        \ ":" .  getcurpos()[1] .
+        \ "] DEBUGGING STRING ==> "
+  return l:debug_str
+endfunc
 
 " Supplementary functions {{{
 ""
@@ -111,13 +114,13 @@ let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 
 " Debug string - Vim {{{
 function! s:debugVim()
-    let l:debugStr = "echo \"" . s:debugPrefixStr . s:debugCounter . "\""
+    let l:debugStr = "echo \"" . s:debugPrefixStr() . s:debugCounter . "\""
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - C/C++ {{{
 function! s:debugC()
-    let l:debugStr = "printf(\"" . s:debugPrefixStr . s:debugCounter . "\");"
+    let l:debugStr = "printf(\"" . s:debugPrefixStr() . s:debugCounter . "\");"
 
     if g:debugstringAlwaysIncludeHeader
         let l:incStr = "#include <stdio.h>; "
@@ -129,25 +132,25 @@ endfunc " }}}
 
 " Debug string - Python {{{
 function! s:debugPython()
-    let l:debugStr = "print(\"" . s:debugPrefixStr . s:debugCounter . "\")"
+    let l:debugStr = "print(\"" . s:debugPrefixStr() . s:debugCounter . "\")"
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - Haskell {{{
 function! s:debugHaskell()
-    let l:debugStr = "putStrLn \"" . s:debugPrefixStr . s:debugCounter . "\""
+    let l:debugStr = "putStrLn \"" . s:debugPrefixStr() . s:debugCounter . "\""
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - Ruby {{{
 function! s:debugRuby()
-    let l:debugStr = "puts \"" . s:debugPrefixStr . s:debugCounter . "\""
+    let l:debugStr = "puts \"" . s:debugPrefixStr() . s:debugCounter . "\""
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - Shell {{{
 function! s:debugShell()
-    let l:debugStr = "echo \"" . s:debugPrefixStr . s:debugCounter . "\";"
+    let l:debugStr = "echo \"" . s:debugPrefixStr() . s:debugCounter . "\";"
     :put=l:debugStr
 endfunc " }}}
 
@@ -158,20 +161,20 @@ endfunc " }}}
 
 " Debug string - Fortran {{{
 function! s:debugFortran()
-    let l:debugStr = "PRINT *, \"" . s:debugPrefixStr . s:debugCounter . "\""
+    let l:debugStr = "PRINT *, \"" . s:debugPrefixStr() . s:debugCounter . "\""
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - Java {{{
 function! s:debugJava()
-    let l:debugStr = "System.out.println(\"" . s:debugPrefixStr . s:debugCounter . "\");"
+    let l:debugStr = "System.out.println(\"" . s:debugPrefixStr() . s:debugCounter . "\");"
     :put=l:debugStr
 endfunc " }}}
 
 " Debug string - Javascript {{{
 
 function! s:debugJavascript()
-    let l:debugStr = "<script>alert( " . s:debugPrefixStr . s:debugCounter . "); </script>"
+    let l:debugStr = "<script>alert( " . s:debugPrefixStr()  . s:debugCounter . "); </script>"
     :put=l:debugStr
 endfunc " }}}
 
