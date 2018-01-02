@@ -1,5 +1,9 @@
 # vim-debugstring
 
+[![Project status][badge-status]][vimscripts]
+[![Current release][badge-release]][releases]
+[![Open issues][badge-issues]][issues]
+
 ```
      _      _                     _        _
     | |    | |                   | |      (_)
@@ -15,7 +19,9 @@
 ## Purpose
 
 debugstring aims to automate standard debugging operations (e.g., segfaults).
-It does that by facilitating the ubiquitous `printf()-debugging` i.e., scatter
+It does that by facilitating the ubiquitous
+[printf()-debugging](https://everything2.com/title/printf%28%29%20debugging)
+i.e., scatter
 logging statements around the various code snippets that you want to test.
 
 ![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo.gif)
@@ -29,7 +35,7 @@ Currently the following languages are supported:
 - Fortran
 - Haskell
 - Java
-- javascript
+- Javascript
 - PHP
 - Python
 - Ruby
