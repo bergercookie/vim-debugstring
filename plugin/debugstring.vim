@@ -5,6 +5,7 @@
 
 " TODO: Add option for variable debugging
 " Make the counter buffer-specific
+" Escape double single quotes vimscript variable printing
 
 
 ""
@@ -57,7 +58,6 @@
 "     https://github.com/tpope/
 "
 
-
 " Introductory moves {{{
 if exists('g:loaded_debugstring') || &compatible
   finish
@@ -67,6 +67,12 @@ let g:loaded_debugstring = 1
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 " }}}
+"
+let s:modes = {
+            \ 'std_debug': 0,
+            \ 'var_debug': 1,
+            \}
+
 
 let g:debugStringCounter = 0
 let g:debugStringCounterStep = 1
@@ -105,6 +111,9 @@ if !hasmapto('<Plug>DumpDebugString')
     ""@setting default_dump_debug_map
     "
     nmap <unique> <Leader>ds  <Plug>DumpDebugString
+    ""@setting default_dump_debug_map
+    "
+    nmap <unique> <Leader>dS  <Plug>DumpDebugStringExpr
 endif
 ""
 " Set this to false if you want to print just the logging statement without any
@@ -117,10 +126,20 @@ let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 " Wrapper around the low-level debug* methods.
 " It also takes care of incrementing the g:debugCounter
 "
-function! s:debugFunctionWrapper()
+function! s:debugFunctionWrapper(mode)
     let l:prev_pos = getcurpos()
 
-    call DebugStringFun()
+    if a:mode ==# s:modes['std_debug']
+        call DebugStringFun()
+    elseif a:mode ==# s:modes['var_debug']
+        let l:expr = input("Input Expression: ")
+        let l:res = DebugStringFunExpr(l:expr)
+        put=l:res
+    else
+        echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
+        return 0
+    endif
+
     call s:incrDebugCounter() " increase the counter
 
     let l:new_pos = l:prev_pos
@@ -128,7 +147,8 @@ function! s:debugFunctionWrapper()
     call setpos('.', l:new_pos)
 endfunc
 
-nnoremap <silent> <Plug>DumpDebugString :<C-U> :call <SID>debugFunctionWrapper()<CR>
+nnoremap <silent> <Plug>DumpDebugString :<C-U> :call <SID>debugFunctionWrapper(0)<CR>
+nnoremap <silent> <Plug>DumpDebugStringExpr :<C-U> :call <SID>debugFunctionWrapper(1)<CR>
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo

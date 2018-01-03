@@ -7,8 +7,8 @@ endfunc
 
 function! DebugStringFunExpr(expr)
     let l:debugStr = 'std::cout << "' . g:DebugstringPrefixStr()
-                \ . "'" . shellescape(a:expr) . "'" . '"'
-                \ . ' << ' . shellescape(a:expr)
+                \ . a:expr . '"' . ' << '
+                \ . a:expr
                 \ . ' << '
                 \ . 'std::endl;'
 
