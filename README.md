@@ -57,6 +57,12 @@ nnoremap <your-key-combination> <Plug>DumpDebugString
 
 Default mapping is: `<Leader>ds`
 
+### Remarks - Debugging
+
+* Make sure that the filetype plugin is enabled. A line like `filetype plugin on` in
+    your `.vimrc` should do the job.
+
+
 ## Installation
 
 ### Using a runtimepath/package manager

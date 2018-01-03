@@ -1,7 +1,10 @@
 " debugstring.vim - Debug, printf()-style, at the speed of light
-" Maintainer:   Nikos Koukis <http://bergercookie.github.io/>
-" Version:      0.1
+" Maintainer: Nikos Koukis <http://bergercookie.github.io/>
+" Version:    0.1
 
+
+" TODO: Add option for variable debugging
+" Make the counter buffer-specific
 
 
 ""
@@ -56,24 +59,24 @@
 
 
 " Introductory moves {{{
-" if exists("g:loaded_debugstring") || &cp
-"   finish
-" endif
-" let g:loaded_debugstring = 1
+if exists('g:loaded_debugstring') || &compatible
+  finish
+endif
+let g:loaded_debugstring = 1
 
-let s:save_cpo = &cpo
-set cpo&vim
+let s:save_cpo = &cpoptions
+set cpoptions&vim
 " }}}
 
-let s:debugCounter = 0
-let s:debugCounterStep = 1
+let g:debugStringCounter = 0
+let g:debugStringCounterStep = 1
 
 " By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
-function! s:debugPrefixStr()
+function! g:DebugstringPrefixStr()
   let l:debug_str =
-        \ "[" . fnamemodify(bufname("%"), ":t") .
-        \ ":" .  getcurpos()[1] .
-        \ "] DEBUGGING STRING ==> "
+        \ '[' . fnamemodify(bufname('%'), ':t') .
+        \ ':' .  getcurpos()[1] .
+        \ '] DEBUGGING STRING ==> '
   return l:debug_str
 endfunc
 
@@ -82,7 +85,7 @@ endfunc
 " Reset the debugging counter.
 "
 function! s:resetDebugCounter()
-    let s:debugCounter = 0
+    let g:debugStringCounter = 0
 endfunc
 
 ""
@@ -95,8 +98,8 @@ command -nargs=0 ResetDebugCounter :call <SID>resetDebugCounter()
 " This is called automaticall every time a debug* method is used
 "
 function! s:incrDebugCounter()
-    let s:debugCounter += s:debugCounterStep
-endfunc " }}}
+    let g:debugStringCounter += g:debugStringCounterStep
+endfunc
 
 if !hasmapto('<Plug>DumpDebugString')
     ""@setting default_dump_debug_map
@@ -111,131 +114,22 @@ endif
 "
 let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 
-
-" Debug string - Vim {{{
-function! s:debugVim()
-    let l:debugStr = "echo \"" . s:debugPrefixStr() . s:debugCounter . "\""
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - C/C++ {{{
-function! s:debugC()
-    let l:debugStr = "printf(\"" . s:debugPrefixStr() . s:debugCounter . "\");"
-
-    if g:debugstringAlwaysIncludeHeader
-        let l:incStr = "#include <stdio.h>; "
-        let l:debugStr = l:incStr . l:debugStr
-    endif
-
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Python {{{
-function! s:debugPython()
-    let l:debugStr = "print(\"" . s:debugPrefixStr() . s:debugCounter . "\")"
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Haskell {{{
-function! s:debugHaskell()
-    let l:debugStr = "putStrLn \"" . s:debugPrefixStr() . s:debugCounter . "\""
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Ruby {{{
-function! s:debugRuby()
-    let l:debugStr = "puts \"" . s:debugPrefixStr() . s:debugCounter . "\""
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Shell {{{
-function! s:debugShell()
-    let l:debugStr = "echo \"" . s:debugPrefixStr() . s:debugCounter . "\";"
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - R {{{
-function! s:debugR()
-    call s:debugPython()
-endfunc " }}}
-
-" Debug string - Fortran {{{
-function! s:debugFortran()
-    let l:debugStr = "PRINT *, \"" . s:debugPrefixStr() . s:debugCounter . "\""
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Java {{{
-function! s:debugJava()
-    let l:debugStr = "System.out.println(\"" . s:debugPrefixStr() . s:debugCounter . "\");"
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - Javascript {{{
-
-function! s:debugJavascript()
-    let l:debugStr = "<script>alert( " . s:debugPrefixStr()  . s:debugCounter . "); </script>"
-    :put=l:debugStr
-endfunc " }}}
-
-" Debug string - PHP {{{
-function! s:debugPhp()
-    call s:debugShell()
-endfunc " }}}
-
-""
 " Wrapper around the low-level debug* methods.
 " It also takes care of incrementing the g:debugCounter
 "
-function! s:debugFunctionWrapper(debugFn)
-    let b:winvar = winsaveview()
+function! s:debugFunctionWrapper()
+    let l:prev_pos = getcurpos()
 
-    " call the corresponding function
-    let s:processing = function(a:debugFn)
-    let @x = s:processing()
+    call DebugStringFun()
+    call s:incrDebugCounter() " increase the counter
 
-    " increase the counter
-    call s:incrDebugCounter()
+    let l:new_pos = l:prev_pos
+    let l:new_pos[1] += 2 " go directly to the next line
+    call setpos('.', l:new_pos)
+endfunc
 
-    call winrestview(b:winvar)
+nnoremap <silent> <Plug>DumpDebugString :<C-U> :call <SID>debugFunctionWrapper()<CR>
 
-    " directly move to the next line
-    return getcurpos()[1] + 2
-endfunc " }}}
-
-
-""
-" Autocommands group containing the mappings of <Plug>DumpDebugString method for
-" the cases that @plugin(name) supports
-"
-" @setting debugstring_mappings
-"
-augroup debugstring_mappings
-    autocmd!
-    autocmd Filetype vim nnoremap        <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugVim")<CR>
-    autocmd Filetype c,cpp nnoremap      <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugC")<CR>
-    autocmd Filetype python nnoremap     <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPython")<CR>
-    autocmd Filetype haskell nnoremap    <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugHaskell")<CR>
-    autocmd Filetype ruby nnoremap       <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugRuby")<CR>
-    autocmd Filetype sh nnoremap      <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugShell")<CR>
-    autocmd Filetype fortran nnoremap    <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugFortran")<CR>
-    autocmd Filetype java nnoremap       <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJava")<CR>
-    autocmd Filetype javascript nnoremap <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugJavascript")<CR>
-    autocmd Filetype php nnoremap        <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugPhp")<CR>
-    autocmd Filetype R nnoremap          <buffer> <silent>
-                \ <Plug>DumpDebugString  :<C-U>exe <SID>debugFunctionWrapper("s:debugR")<CR>
-augroup END
-
-let &cpo = s:save_cpo
+let &cpoptions = s:save_cpo
 unlet s:save_cpo
 
