@@ -130,11 +130,18 @@ function! s:debugFunctionWrapper(mode)
     let l:prev_pos = getcurpos()
 
     if a:mode ==# s:modes['std_debug']
-        call DebugStringFun()
+        if !exists(':AddDebugString')
+            echoerr "Command AddDebugString isn't implemented for filetype \"" . &filetype . "\""
+            return 0
+        endif
+        AddDebugString
     elseif a:mode ==# s:modes['var_debug']
+        if !exists(':AddDebugStringExpr')
+            echoerr "Command AddDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
+            return 0
+        endif
         let l:expr = input("Input Expression: ")
-        let l:res = DebugStringFunExpr(l:expr)
-        put=l:res
+        AddDebugStringExpr(l:expr)
     else
         echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
         return 0
