@@ -4,7 +4,7 @@ endif
 let g:loaded_c_like = 1
 
 function! DebugStringFunC()
-    let l:debugStr = "printf(\"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\\n\");"
+    let l:debugStr = "repeat(" ", indent(".")) . printf(\"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\\n\");"
 
     if g:debugstringAlwaysIncludeHeader
         let l:incStr = '#include <stdio.h>; '
