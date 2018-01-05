@@ -4,11 +4,11 @@ let g:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 execute 'source ' . g:path . '/common/c_like.vim'
 
 function! s:DebugStringFun()
-    put=DebugStringFunC()
+    return DebugStringFunC()
 endfunc
 
 function! s:DebugStringFunExpr(expr)
-    let l:debugStr = 'std::cout << "' . g:DebugstringPrefixStr()
+    let l:debug_str = 'std::cout << "' . g:DebugstringPrefixStr()
                 \ . a:expr . '"' . ' << '
                 \ . a:expr
                 \ . ' << '
@@ -16,11 +16,11 @@ function! s:DebugStringFunExpr(expr)
 
     if g:debugstringAlwaysIncludeHeader
         let l:incStr = '#include <iostream>; '
-        let l:debugStr = l:incStr . l:debugStr
+        let l:debug_str = l:incStr . l:debug_str
     endif
 
-    put=l:debugStr
+    return l:debug_str
 endfunc
 
-command -buffer -nargs=0 AddDebugString :call s:DebugStringFun()
-command -buffer -nargs=1 AddDebugStringExpr :call s:DebugStringFunExpr(<args>)
+command -buffer -nargs=0 GetDebugString :call s:DebugStringFun()
+command -buffer -nargs=1 GetDebugStringExpr :call s:DebugStringFunExpr(<args>)

@@ -1,6 +1,6 @@
 function! s:DebugStringFun()
-    let l:debugStr = "putStrLn \"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\""
-    put=l:debugStr
+    let l:debug_str = "putStrLn \"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\""
+    return l:debug_str
 endfunc
 
-command -buffer -nargs=0 AddDebugString :call s:DebugStringFun()
+command -buffer -nargs=0 GetDebugString :call s:DebugStringFun()
