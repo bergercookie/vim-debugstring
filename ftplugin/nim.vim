@@ -6,4 +6,3 @@ function! s:DebugStringFun()
 endfunc
 
 command -buffer -nargs=0 AddDebugString :call s:DebugStringFun()
-

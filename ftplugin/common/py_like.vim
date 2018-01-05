@@ -4,7 +4,7 @@ endif
 let g:loaded_py_like = 1
 
 function! DebugStringFunPython()
-    let l:debugStr = "print(\"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\")"
+    let l:debugStr = repeat(" ", indent(".")) . "print(\"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\")"
     return l:debugStr
 endfunc
 
