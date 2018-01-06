@@ -3,11 +3,6 @@
 " Version:    0.1
 
 
-" TODO: Add option for variable debugging
-" Make the counter buffer-specific
-" Escape double single quotes vimscript variable printing
-" TODO - Append to current line if that is empty
-
 
 ""
 " @section Introduction, intro

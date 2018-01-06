@@ -106,6 +106,12 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 
 - [ ] Method to delete all the debugging strings in all "touched" buffers
 - [ ] Method to delete all the debugging strings in current buffer
-- [ ] Method to print a name of a variable easily
+- [ ] Method to print name and contents of a variable
+- [ ] Add option for variable debugging
+- [ ] Make the counter buffer-specific
+- [ ] Escape double single quotes vimscript variable printing
+- [ ] Append to current line if that is empty
+- [ ] Support repeat.vim
+
 
 

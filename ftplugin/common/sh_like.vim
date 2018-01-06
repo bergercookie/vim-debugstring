@@ -3,8 +3,14 @@ if exists('g:loaded_sh_like')
 endif
 let g:loaded_sh_like = 1
 
-function! DebugStringFunShell()
-    let l:debug_str = "echo \"" . g:DebugstringPrefixStr() . g:debugStringCounter . "\";"
+function! DebugStringFunShellBase(desc, ...)
+    let l:debug_str = 'echo "' . a:desc
+    if len(a:000) ==# 1
+        let l:debug_str .= ' ${' . a:1 . '}'
+    endif
+
+    let l:debug_str .= '"'
     return l:debug_str
 endfunc
+
 
