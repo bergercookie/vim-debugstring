@@ -1,8 +1,5 @@
 # vim-debugstring
 
-[![Project status][badge-status]][vimscripts]
-[![Current release][badge-release]][releases]
-[![Open issues][badge-issues]][issues]
 
 ```
      _      _                     _        _
@@ -42,6 +39,12 @@ Currently the following languages are supported:
 - Shell
 - Vim
 
+### Features
+
+
+- Support for [vim-repeat](https://github.com/tpope/vim-repeat). No
+    need for repeat the same mapping, or rewrite the lengthy expression that you
+    want to monitor, just use the `.` character
 
 For a more detailed outline of `debugstring` check
 [doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)
@@ -65,6 +68,12 @@ Default mapping is: `<Leader>ds`
 
 ## Installation
 
+### Dependencies
+
+debugstring depends on the following vim plugins:
+
+- vim-repeat
+
 ### Using a runtimepath/package manager
 
 I would personally recommend using [Pathogen](https://github.com/tpope/vim-pathogen/) for
@@ -74,10 +83,9 @@ please raise an
 [issue](https://github.com/bergercookie/vim-debugstring/issues) on Github)
 
 ```bash
+git clone https://github.com/tpope/vim-repeat ~/.vim/bundle/vim-repeat
 git clone https://github.com/bergercookie/vim-debustring.git ~/.vim/bundle/vim-debugstring
 
-# If you're using submodules to handle your vim-dotfiles:
-cd $BUNDLE; git submodule add https://github.com/bergercookie/vim-debustring.git
 ```
 
 ### Manual installation
@@ -111,7 +119,7 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 - [ ] Make the counter buffer-specific
 - [ ] Escape double single quotes vimscript variable printing
 - [ ] Append to current line if that is empty
-- [ ] Support repeat.vim
-
+- [x] Support repeat.vim
+- [ ] Use an assertion module
 
 

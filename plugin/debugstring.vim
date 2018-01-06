@@ -64,6 +64,12 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 " }}}
 "
+
+""
+" Available modes - to be used with the debugFunctionWrapper method
+"@setting debugging_modes
+"
+"
 let s:modes = {
             \ 'std_debug': 0,
             \ 'var_debug': 1,
@@ -75,10 +81,14 @@ let g:debugStringCounterStep = 1
 
 " By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
 function! g:DebugstringPrefixStr()
-  let l:debug_str =
-        \ '[' . fnamemodify(bufname('%'), ':t') .
-        \ ':' .  getcurpos()[1] .
-        \ '] DEBUGGING STRING ==> '
+  let l:debug_str = '[' . fnamemodify(bufname('%'), ':t') . ':'
+  if getline('.') =~# "^$" " Empty line
+      let l:debug_str .= getcurpos()[1]
+  else
+      let l:debug_str .= string(str2nr(getcurpos()[1]) + 1)
+  endif
+  let l:debug_str .= '] DEBUGGING STRING ==> '
+
   return l:debug_str
 endfunc
 
@@ -122,7 +132,14 @@ let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 " Wrapper around the low-level debug* methods.
 " It also takes care of incrementing the g:debugCounter
 "
-function! s:debugFunctionWrapper(mode)
+" {mode} refers to the type of debugging that is to be done. See
+" @setting(debugging_modes) for the available modes
+"
+" If an additional argument is provided it will be used as the expression - This
+" additional argument implies that the debugging mode is 'var_debug'
+"
+"
+function! s:debugFunctionWrapper(mode, ...)
     let l:prev_pos = getcurpos()
 
     let l:append_at_same_line = 0
@@ -137,21 +154,32 @@ function! s:debugFunctionWrapper(mode)
         endif
 
         AddDebugString
+        call repeat#set("\<Plug>DumpDebugString")
 
     elseif a:mode ==# s:modes['var_debug']
         if !exists(':AddDebugStringExpr')
             echoerr "Command AddDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
             return 0
         endif
-        let l:expr = input("Input Expression: ")
+        let l:expr = ""
+        if len(a:000) ==# 0
+            let l:expr = input("Input Expression: ")
+        else
+            let l:expr = a:1
+        endif
+
         AddDebugStringExpr(l:expr)
+
+        " Make way for repeat.vim
+        execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U> :call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
+        call repeat#set("\<Plug>DumpDebugStringSpecExpr")
     else
         echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
         return 0
     endif
 
     " correct indentation level
-    " normal ==
+    normal ==
 
     call s:incrDebugCounter() " increase the counter
 
