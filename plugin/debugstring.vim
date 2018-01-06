@@ -6,6 +6,7 @@
 " TODO: Add option for variable debugging
 " Make the counter buffer-specific
 " Escape double single quotes vimscript variable printing
+" TODO - Append to current line if that is empty
 
 
 ""
@@ -129,30 +130,44 @@ let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 function! s:debugFunctionWrapper(mode)
     let l:prev_pos = getcurpos()
 
+    let l:append_at_same_line = 0
+    if getline('.') =~# "^$" " Empty line
+        let l:append_at_same_line = 1
+    endif
+
     if a:mode ==# s:modes['std_debug']
-        if !exists(':GetDebugString')
-            echoerr "Command GetDebugString isn't implemented for filetype \"" . &filetype . "\""
+        if !exists(':AddDebugString')
+            echoerr "Command AddDebugString isn't implemented for filetype \"" . &filetype . "\""
             return 0
         endif
-        let l:res = GetDebugString
-        put=l:res
+
+        AddDebugString
+
     elseif a:mode ==# s:modes['var_debug']
-        if !exists(':GetDebugStringExpr')
-            echoerr "Command GetDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
+        if !exists(':AddDebugStringExpr')
+            echoerr "Command AddDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
             return 0
         endif
         let l:expr = input("Input Expression: ")
-        let l:res = GetDebugStringExpr(l:expr)
-        put=l:res
+        AddDebugStringExpr(l:expr)
     else
         echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
         return 0
     endif
 
+    " correct indentation level
+    " normal ==
+
     call s:incrDebugCounter() " increase the counter
 
     let l:new_pos = l:prev_pos
-    let l:new_pos[1] += 2 " go directly to the next line
+    if l:append_at_same_line
+        " move them to previous line
+        normal! kJ
+        let l:new_pos[1] += 1
+    else
+        let l:new_pos[1] += 2 " go directly to the next line
+    endif
     call setpos('.', l:new_pos)
 endfunc
 

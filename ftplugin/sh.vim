@@ -5,4 +5,4 @@ function! s:DebugStringFun()
     return DebugStringFunShell()
 endfunc
 
-command -buffer -nargs=0 GetDebugString :call s:DebugStringFun()
+command -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
