@@ -11,6 +11,6 @@ function! s:DebugStringFunExpr(expr)
     return l:debug_str
 endfunc
 
-command -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
-command -buffer -nargs=1 AddDebugStringExpr put=s:DebugStringFunExpr(<args>)
+command! -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
+command! -buffer -nargs=1 AddDebugStringExpr put=s:DebugStringFunExpr(<args>)
 

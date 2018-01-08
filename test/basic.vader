@@ -1,0 +1,67 @@
+# Test case
+
+# mapleader is set in the local vimrc
+#
+# Line +Text: 3
+# Line -Text: 8
+
+Include: text_setup.vader
+Include: env_setup.vader
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute (C +std_debug +Text):
+  :set filetype=c
+  3
+  AssertEqual getline('.'), 'And each in your season', "Current line contents don't match"
+  :normal ,ds
+  :normal .
+
+  Log join(getline(1,'$'), "\n")
+
+Then ():
+  4
+  Log join(getline(1,'$'), "\n")
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:4] DEBUGGING STRING ==> 0\n");'
+  6
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:6] DEBUGGING STRING ==> 1\n");'
+
+================================================================================
+
+Execute (C +std_debug -Text):
+  :set filetype=c
+  8
+  AssertEqual getline('.'), '', "Current line is not empty"
+  :normal ,ds
+
+Then ():
+  8
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:8] DEBUGGING STRING ==> 0\n");'
+
+================================================================================
+
+Execute (C +var_debug -Text TODO):
+  :set filetype=c
+Then ():
+================================================================================
+Execute (C +var_debug +Text TODO):
+  :set filetype=c
+Then ():
+================================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# cmake
+# cpp
+# fortran
+# haskell
+# javascript
+# java
+# php
+# python
+# ruby
+# r
+# sh
+# vim
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

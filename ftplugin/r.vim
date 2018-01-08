@@ -5,4 +5,4 @@ function! s:DebugStringFun()
     return DebugStringFunPython()
 endfunc
 
-command -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
+command! -buffer -nargs=0 AddDebugString put=s:DebugStringFun()

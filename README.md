@@ -121,5 +121,7 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 - [ ] Append to current line if that is empty
 - [x] Support repeat.vim
 - [ ] Use an assertion module
-
-
+- [x] Use vader.vim for TDD
+- [ ] Extend vader support for rest of languages
+- [ ] Use travis for CI
+- [x] Bug with changing the filename of the current file

@@ -9,4 +9,4 @@ function! s:DebugStringFun()
     return DebugStringFunC()
 endfunc
 
-command -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
+command! -buffer -nargs=0 AddDebugString put=s:DebugStringFun()

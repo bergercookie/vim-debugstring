@@ -1,0 +1,13 @@
+filetype off
+let mapleader = ","
+
+set runtimepath+=~/.vim/bundle/vader.vim
+set runtimepath+=~/.vim/bundle/vim-debugstring
+set runtimepath+=~/.vim/bundle/vim-repeat
+
+filetype plugin indent on
+syntax enable
+set nomore
+set noswapfile
+set viminfo=
+

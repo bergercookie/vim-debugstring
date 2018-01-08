@@ -3,4 +3,4 @@ function! s:DebugStringFun()
     return l:debug_str
 endfunc
 
-command -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
+command! -buffer -nargs=0 AddDebugString put=s:DebugStringFun()
