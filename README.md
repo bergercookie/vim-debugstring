@@ -18,30 +18,40 @@
 debugstring aims to automate standard debugging operations (e.g., segfaults).
 It does that by facilitating the ubiquitous
 [printf()-debugging](https://everything2.com/title/printf%28%29%20debugging)
-i.e., scatter
-logging statements around the various code snippets that you want to test.
+i.e., scatter logging statements around the various code snippets that you want
+to test.
 
-![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo.gif)
 
-The form and syntax of the logging statements target the language at hand
+### Demos
+
+#### Standard debugging - C++
+
+![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp.gif)
+
+#### Debugging for expression/variables - C++
+
+![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp_var.gif)
+
+## Features
+
+- The form and syntax of the logging statements target the language at hand
 (e.g., use `printf()` in C/C++ but `puts()` in Ruby)
-
 Currently the following languages are supported:
 
-- C/C++
-- Fortran
-- Haskell
-- Java
-- Javascript
-- PHP
-- Python
-- Ruby
-- Shell
-- Vim
+  + C
+  + C++
+  + Fortran
+  + Haskell
+  + Java
+  + Javascript
+  + PHP
+  + Python
+  + Ruby
+  + Shell
+  + Vim
 
-### Features
-
-
+- Support for debugging variable expressions e.g., the values of variables or
+    arbitrary expressions at certain parts of your code
 - Support for [vim-repeat](https://github.com/tpope/vim-repeat). No
     need for repeat the same mapping, or rewrite the lengthy expression that you
     want to monitor, just use the `.` character
@@ -51,14 +61,15 @@ For a more detailed outline of `debugstring` check
 
 ## Usage
 
-Use the mapping of your choice to place unique logging directives during
+Use the mappings of your choice to place unique logging directives during
 debugging times.
 
 ```vim
 nnoremap <your-key-combination> <Plug>DumpDebugString
+nnoremap <a-second-key-combination> <Plug>DumpDebugStringExpr
 ```
 
-Default mapping is: `<Leader>ds`
+Default mappings are: `<Leader>ds`, `<Leader>dS` respectively.
 
 ### Remarks - Debugging
 
@@ -72,7 +83,7 @@ Default mapping is: `<Leader>ds`
 
 debugstring depends on the following vim plugins:
 
-- vim-repeat
+- vim-repeat [OPTIONAL]
 
 ### Using a runtimepath/package manager
 
@@ -125,3 +136,4 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 - [ ] Extend vader support for rest of languages
 - [ ] Use travis for CI
 - [x] Bug with changing the filename of the current file
+- [ ] Make vim-repeat dependency optional

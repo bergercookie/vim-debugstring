@@ -22,6 +22,7 @@
 " (@setting(default_dump_debug_map)) or define your own
 "
 " nmap <your-key-combination> <Plug>DumpDebugString
+" nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 
 ""
 " @section Functions
@@ -154,7 +155,10 @@ function! s:debugFunctionWrapper(mode, ...)
         endif
 
         AddDebugString
-        call repeat#set("\<Plug>DumpDebugString")
+
+        if &rtp =~ 'vim-repeat'
+          call repeat#set("\<Plug>DumpDebugString")
+        endif
 
     elseif a:mode ==# s:modes['var_debug']
         if !exists(':AddDebugStringExpr')
@@ -171,8 +175,10 @@ function! s:debugFunctionWrapper(mode, ...)
         AddDebugStringExpr(l:expr)
 
         " Make way for repeat.vim
-        execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U> :call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
-        call repeat#set("\<Plug>DumpDebugStringSpecExpr")
+        if &rtp =~ 'vim-repeat'
+          execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U> :call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
+          call repeat#set("\<Plug>DumpDebugStringSpecExpr")
+        endif
     else
         echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
         return 0
