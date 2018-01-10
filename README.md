@@ -46,6 +46,7 @@ Currently the following languages are supported:
   + Javascript
   + PHP
   + Python
+  + R
   + Ruby
   + Shell
   + Vim
@@ -137,3 +138,5 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 - [ ] Use travis for CI
 - [x] Bug with changing the filename of the current file
 - [ ] Make vim-repeat dependency optional
+- [ ] Turn supported languages into a table - what do we support in which
+    language?
