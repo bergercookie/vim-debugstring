@@ -53,6 +53,7 @@ Lang       | Debug String       | Debug Variable
 ---        | ---                | ---
 C          | :heavy_check_mark: | :x:
 C++        | :heavy_check_mark: | :x:
+CMake      | :heavy_check_mark: | :heavy_check_mark:
 Fortran    | :heavy_check_mark: | :x:
 Haskell    | :heavy_check_mark: | :heavy_check_mark:
 Java       | :heavy_check_mark: | :heavy_check_mark:
