@@ -36,20 +36,33 @@ to test.
 
 - The form and syntax of the logging statements target the language at hand
 (e.g., use `printf()` in C/C++ but `puts()` in Ruby)
-Currently the following languages are supported:
 
-  + C
-  + C++
-  + Fortran
-  + Haskell
-  + Java
-  + Javascript
-  + PHP
-  + Python
-  + R
-  + Ruby
-  + Shell
-  + Vim
+Currently the following languages are supported. First column corresponds to the
+standard debugging string while the second to the case of debugging for a
+specific variable.
+
+```c++
+// Debug String
+std::cout << "[a.c:4] DEBUGGING STRING ==> " << 0 << std::endl;
+
+// Debug Variable
+std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
+```
+
+Lang       | Debug String       | Debug Variable
+---        | ---                | ---
+C          | :heavy_check_mark: | :x:
+C++        | :heavy_check_mark: | :x:
+Fortran    | :heavy_check_mark: | :x:
+Haskell    | :heavy_check_mark: | :heavy_check_mark:
+Java       | :heavy_check_mark: | :heavy_check_mark:
+Javascript | :heavy_check_mark: | :x:
+PHP        | :heavy_check_mark: | :heavy_check_mark:
+Python     | :heavy_check_mark: | :heavy_check_mark:
+R          | :heavy_check_mark: | :heavy_check_mark:
+Ruby       | :heavy_check_mark: | :x:
+Shell      | :heavy_check_mark: | :heavy_check_mark:
+Vim        | :heavy_check_mark: | :heavy_check_mark:
 
 - Support for debugging variable expressions e.g., the values of variables or
     arbitrary expressions at certain parts of your code
@@ -126,17 +139,18 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 
 - [ ] Method to delete all the debugging strings in all "touched" buffers
 - [ ] Method to delete all the debugging strings in current buffer
-- [ ] Method to print name and contents of a variable
-- [ ] Add option for variable debugging
+- [x] Method to print name and contents of a variable
+- [ ] Add option for variable debugging in rest of langs
 - [ ] Make the counter buffer-specific
 - [ ] Escape double single quotes vimscript variable printing
-- [ ] Append to current line if that is empty
+- [x] Append to current line if that is empty
 - [x] Support repeat.vim
 - [ ] Use an assertion module
 - [x] Use vader.vim for TDD
 - [ ] Extend vader support for rest of languages
 - [ ] Use travis for CI
 - [x] Bug with changing the filename of the current file
-- [ ] Make vim-repeat dependency optional
+- [x] Make vim-repeat dependency optional
 - [ ] Turn supported languages into a table - what do we support in which
     language?
+- [x] Make vim-repeat dependency optional
