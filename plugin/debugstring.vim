@@ -83,7 +83,7 @@ let g:debugStringCounterStep = 1
 " By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
 function! g:DebugstringPrefixStr()
   let l:debug_str = '[' . fnamemodify(bufname('%'), ':t') . ':'
-  if getline('.') =~# "^$" " Empty line
+  if getline('.') =~# '^$' " Empty line
       let l:debug_str .= getcurpos()[1]
   else
       let l:debug_str .= string(str2nr(getcurpos()[1]) + 1)
@@ -144,7 +144,7 @@ function! s:debugFunctionWrapper(mode, ...)
     let l:prev_pos = getcurpos()
 
     let l:append_at_same_line = 0
-    if getline('.') =~# "^$" " Empty line
+    if getline('.') =~# '^$' " Empty line
         let l:append_at_same_line = 1
     endif
 
@@ -156,7 +156,7 @@ function! s:debugFunctionWrapper(mode, ...)
 
         AddDebugString
 
-        if &rtp =~ 'vim-repeat'
+        if &runtimepath =~# 'vim-repeat'
           call repeat#set("\<Plug>DumpDebugString")
         endif
 
@@ -165,9 +165,9 @@ function! s:debugFunctionWrapper(mode, ...)
             echoerr "Command AddDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
             return 0
         endif
-        let l:expr = ""
+        let l:expr = ''
         if len(a:000) ==# 0
-            let l:expr = input("Input Expression: ")
+            let l:expr = input('Input Expression: ')
         else
             let l:expr = a:1
         endif
@@ -175,7 +175,7 @@ function! s:debugFunctionWrapper(mode, ...)
         AddDebugStringExpr(l:expr)
 
         " Make way for repeat.vim
-        if &rtp =~ 'vim-repeat'
+        if &runtimepath =~# 'vim-repeat'
           execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U> :call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
           call repeat#set("\<Plug>DumpDebugStringSpecExpr")
         endif
@@ -185,7 +185,10 @@ function! s:debugFunctionWrapper(mode, ...)
     endif
 
     " correct indentation level
-    normal ==
+    if indent(getcurpos()[1] - 1) !=# 0
+      normal! k0vwhyjP
+    endif
+    normal! ==
 
     call s:incrDebugCounter() " increase the counter
 
@@ -193,9 +196,8 @@ function! s:debugFunctionWrapper(mode, ...)
     if l:append_at_same_line
         " move them to previous line
         normal! kJ
-        let l:new_pos[1] += 1
     else
-        let l:new_pos[1] += 2 " go directly to the next line
+        let l:new_pos[1] += 1 " go directly to the next line
     endif
     call setpos('.', l:new_pos)
 endfunc
