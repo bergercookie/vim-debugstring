@@ -1,5 +1,5 @@
 function! s:DebugStringFun()
-    let l:debug_str = '<script>alert( ' . g:DebugstringPrefixStr()  . g:debugStringCounter . '); </script>'
+    let l:debug_str = 'console.log("' . g:DebugstringPrefixStr()  . g:debugStringCounter . '");'
     :return l:debug_str
 endfunc
 
