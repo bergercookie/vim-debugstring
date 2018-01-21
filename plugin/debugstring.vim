@@ -4,6 +4,7 @@
 
 
 
+" TODO: Rewrite these instructions
 ""
 " @section Introduction, intro
 "
@@ -80,7 +81,8 @@ let s:modes = {
 let g:debugStringCounter = 0
 let g:debugStringCounterStep = 1
 
-" By default debugging lines should be of the form <directive_to_print> " <prefix_string><debug_number>
+" By default debugging lines should be of the form
+" <directive_to_print> <prefix_string><debug_number>
 function! g:DebugstringPrefixStr()
   let l:debug_str = '[' . fnamemodify(bufname('%'), ':t') . ':'
   if getline('.') =~# '^$' " Empty line

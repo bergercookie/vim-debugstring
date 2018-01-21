@@ -51,8 +51,8 @@ std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
 
 Lang       | Debug String       | Debug Variable
 ---        | ---                | ---
-C          | :heavy_check_mark: | :x:
-C++        | :heavy_check_mark: | :x:
+C          | :heavy_check_mark: | :heavy_check_mark:
+C++        | :heavy_check_mark: | :heavy_check_mark:
 CMake      | :heavy_check_mark: | :heavy_check_mark:
 Fortran    | :heavy_check_mark: | :x:
 Haskell    | :heavy_check_mark: | :heavy_check_mark:
@@ -152,6 +152,6 @@ vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 - [ ] Use travis for CI
 - [x] Bug with changing the filename of the current file
 - [x] Make vim-repeat dependency optional
-- [ ] Turn supported languages into a table - what do we support in which
-    language?
+- [x] Turn supported languages into a table - what do we support in which
+    language
 - [x] Make vim-repeat dependency optional
