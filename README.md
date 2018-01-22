@@ -110,7 +110,7 @@ please raise an
 
 ```bash
 git clone https://github.com/tpope/vim-repeat ~/.vim/bundle/vim-repeat
-git clone https://github.com/bergercookie/vim-debustring.git ~/.vim/bundle/vim-debugstring
+git clone https://github.com/bergercookie/vim-debugstring.git ~/.vim/bundle/vim-debugstring
 
 ```
 
