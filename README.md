@@ -167,3 +167,4 @@ this or other vim plugins
 - [x] Turn supported languages into a table - what do we support in which
     language
 - [x] Make vim-repeat dependency optional
+- [] Have .vader test filetypes use the same function as standard vim files

@@ -10,6 +10,8 @@ Include: env_setup.vader
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+""
+" Standard usecase, buffer with some text
 Execute (C +std_debug +Text):
   :set filetype=c
   3
@@ -17,17 +19,16 @@ Execute (C +std_debug +Text):
   :normal ,ds
   :normal .
 
-  Log join(getline(1,'$'), "\n")
-
 Then ():
   4
-  Log join(getline(1,'$'), "\n")
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:4] DEBUGGING STRING ==> 0\n");'
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:4] DEBUGGING STRING ==> %d\n", 0);'
   6
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:6] DEBUGGING STRING ==> 1\n");'
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:6] DEBUGGING STRING ==> %d\n", 1);'
 
 ================================================================================
 
+""
+" What happens if there isn't any text at all in the buffer?
 Execute (C +std_debug -Text):
   :set filetype=c
   8
@@ -36,7 +37,7 @@ Execute (C +std_debug -Text):
 
 Then ():
   8
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:8] DEBUGGING STRING ==> 0\n");'
+  AssertEqual getline('.'), 'printf("[[Vader-workbench]:8] DEBUGGING STRING ==> %d\n", 0);'
 
 ================================================================================
 

@@ -1,8 +1,9 @@
 filetype off
-let mapleader = ","
+let g:mapleader = ","
 
-set runtimepath+=~/.vim/bundle/vader.vim
-set runtimepath+=~/.vim/bundle/vim-debugstring
+set runtimepath+=.
+set runtimepath+=vader.vim
+set runtimepath+=after
 set runtimepath+=~/.vim/bundle/vim-repeat
 
 filetype plugin indent on
