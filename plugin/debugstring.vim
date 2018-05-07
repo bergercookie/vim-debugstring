@@ -16,6 +16,9 @@
 "
 " The form and syntax of the logging statements target the language at hand
 " (e.g., use printf() in C/C++ but puts() in Ruby)
+"
+" vim-debugstring should be compatible with Vim >= 7.4.313
+"
 
 ""
 " @section Configuration, config
@@ -88,9 +91,9 @@ let g:debugStringCounterStep = 1
 function! g:DebugstringPrefixStr()
   let l:debug_str = '[' . fnamemodify(bufname('%'), ':t') . ':'
   if getline('.') =~# '^$' " Empty line
-      let l:debug_str .= getcurpos()[1]
+      let l:debug_str .= line('.')
   else
-      let l:debug_str .= string(str2nr(getcurpos()[1]) + 1)
+      let l:debug_str .= string(str2nr(line('.')) + 1)
   endif
   let l:debug_str .= '] DEBUGGING STRING ==> '
 
@@ -149,7 +152,7 @@ let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 "
 "
 function! s:debugFunctionWrapper(mode, ...)
-    let l:prev_pos = getcurpos()
+    let l:prev_pos = getpos('.')
 
     let l:append_at_same_line = 0
     if getline('.') =~# '^$' " Empty line
@@ -193,7 +196,7 @@ function! s:debugFunctionWrapper(mode, ...)
     endif
 
     " correct indentation level
-    if indent(getcurpos()[1] - 1) !=# 0
+    if indent(line('.') - 1) !=# 0
       normal! k0vwhyjP
     endif
     normal! ==

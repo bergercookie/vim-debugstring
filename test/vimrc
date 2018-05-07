@@ -3,8 +3,8 @@ let g:mapleader = ","
 
 set runtimepath+=.
 set runtimepath+=vader.vim
+set runtimepath+=vim-repeat
 set runtimepath+=after
-set runtimepath+=~/.vim/bundle/vim-repeat
 
 filetype plugin indent on
 syntax enable
