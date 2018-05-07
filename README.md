@@ -1,5 +1,9 @@
 # vim-debugstring
 
+<p align="center">
+  <a href="https://travis-ci.org/bergercookie/vim-debugstring" alt="Build Status">
+  <img src="https://travis-ci.org/bergercookie/vim-debugstring.svg?branch=master" /></a>
+</p>
 
 ```
      _      _                     _        _
