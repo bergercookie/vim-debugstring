@@ -33,9 +33,11 @@ The form and syntax of the logging statements target the language at hand
 CONFIGURATION                                             *debugstring-config*
 
 To add a logging statement either use the default normal mode mapping
-(|g:default_dump_debug_map|) or define your own
+(|g:default_dump_debug_map|) or define your own:
 
-nmap <your-key-combination> <Plug>DumpDebugString
+  * nmap <your-key-combination> <Plug>DumpDebugString
+
+  * nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 
                                             *g:debugstringAlwaysIncludeHeader*
 Set this to false if you want to print just the logging statement without any

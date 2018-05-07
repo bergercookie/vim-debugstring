@@ -136,6 +136,18 @@ In case you like the plugin, you might as well [star it on
 Github](https://github.com/bergercookie/vim-debugstring) or [rate it on
 vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
 
+
+## Notes on Development
+
+This mostly comprises a list of stuff I want to keep track of when developing
+this or other vim plugins
+
+* Use [vimdoc](https://github.com/google/vimdoc) to generate documentation from
+    the `vim` docstring (instead of manually updating the .txt file). See the
+    misc/build_doc for more on how this is done.
+* Use [vader](https://github.com/junegunn/vader.vim) for unittesting.
+
+
 ## TODO
 
 - [ ] Method to delete all the debugging strings in all "touched" buffers

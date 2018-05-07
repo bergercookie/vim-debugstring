@@ -20,10 +20,11 @@
 ""
 " @section Configuration, config
 " To add a logging statement either use the default normal mode mapping
-" (@setting(default_dump_debug_map)) or define your own
+" (@setting(default_dump_debug_map)) or define your own:
 "
-" nmap <your-key-combination> <Plug>DumpDebugString
-" nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
+" * nmap <your-key-combination> <Plug>DumpDebugString
+"
+" * nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 
 ""
 " @section Functions
@@ -81,6 +82,7 @@ let s:modes = {
 let g:debugStringCounter = 0
 let g:debugStringCounterStep = 1
 
+""
 " By default debugging lines should be of the form
 " <directive_to_print> <prefix_string><debug_number>
 function! g:DebugstringPrefixStr()
@@ -103,6 +105,8 @@ function! s:resetDebugCounter()
     let g:debugStringCounter = 0
 endfunc
 
+" }}}
+
 ""
 " Reset the debugging counter
 "
@@ -119,11 +123,12 @@ endfunc
 if !hasmapto('<Plug>DumpDebugString')
     ""@setting default_dump_debug_map
     "
-    nmap <unique> <Leader>ds  <Plug>DumpDebugString
+    nmap <nowait> <unique> <Leader>ds  <Plug>DumpDebugString<CR>
     ""@setting default_dump_debug_map
     "
-    nmap <unique> <Leader>dS  <Plug>DumpDebugStringExpr
+    nmap <nowait> <unique> <Leader>dS  <Plug>DumpDebugStringExpr
 endif
+
 ""
 " Set this to false if you want to print just the logging statement without any
 " additional directive like '#include <stsdio.h'
@@ -132,6 +137,7 @@ endif
 "
 let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
 
+""
 " Wrapper around the low-level debug* methods.
 " It also takes care of incrementing the g:debugCounter
 "
@@ -204,6 +210,10 @@ function! s:debugFunctionWrapper(mode, ...)
     call setpos('.', l:new_pos)
 endfunc
 
+""
+" For debugging, execute a <Plug> command using execute:
+" :execute "normal \<Plug>DumpDebugString"
+"
 nnoremap <silent> <Plug>DumpDebugString :<C-U> :call <SID>debugFunctionWrapper(0)<CR>
 nnoremap <silent> <Plug>DumpDebugStringExpr :<C-U> :call <SID>debugFunctionWrapper(1)<CR>
 
