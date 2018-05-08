@@ -5,5 +5,4 @@ before_script: |
   git clone https://github.com/tpope/vim-repeat.git
 
 script:
-  # Will return 1 in case of errors - 0 otherwise
-  vim -Nu test/vimrc -c 'Vader! test/*'
+  ./test/run-tests.sh

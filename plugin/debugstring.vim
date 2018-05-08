@@ -25,7 +25,7 @@
 " To add a logging statement either use the default normal mode mapping
 " (@setting(default_dump_debug_map)) or define your own:
 "
-" * nmap <your-key-combination> <Plug>DumpDebugString
+" * nmap <your-key-combination> <Plug>DumpDebugStringVar
 "
 " * nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 
@@ -123,13 +123,15 @@ function! s:incrDebugCounter()
     let g:debugStringCounter += g:debugStringCounterStep
 endfunc
 
-if !hasmapto('<Plug>DumpDebugString')
+if !hasmapto('<Plug>DumpDebugStringVar')
     ""@setting default_dump_debug_map
     "
-    nmap <nowait> <unique> <Leader>ds  <Plug>DumpDebugString<CR>
+    nmap <unique> <Leader>ds  <Plug>DumpDebugStringVar
+endif
+if !hasmapto('<Plug>DumpDebugStringExpr')
     ""@setting default_dump_debug_map
     "
-    nmap <nowait> <unique> <Leader>dS  <Plug>DumpDebugStringExpr
+    nmap <unique> <Leader>dS  <Plug>DumpDebugStringExpr
 endif
 
 ""
@@ -168,7 +170,7 @@ function! s:debugFunctionWrapper(mode, ...)
         AddDebugString
 
         if &runtimepath =~# 'vim-repeat'
-          call repeat#set("\<Plug>DumpDebugString")
+          call repeat#set("\<Plug>DumpDebugStringVar<CR>")
         endif
 
     elseif a:mode ==# s:modes['var_debug']
@@ -187,8 +189,8 @@ function! s:debugFunctionWrapper(mode, ...)
 
         " Make way for repeat.vim
         if &runtimepath =~# 'vim-repeat'
-          execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U> :call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
-          call repeat#set("\<Plug>DumpDebugStringSpecExpr")
+          execute 'nnoremap <silent> <Plug>DumpDebugStringSpecExpr :<C-U>call <SID>debugFunctionWrapper(1, "' . l:expr . '")<CR>'
+          call repeat#set("\<Plug>DumpDebugStringSpecExpr<CR>")
         endif
     else
         echoerr 's:debugFunctionWrapper - Unknown mode: ' a:mode
@@ -215,10 +217,10 @@ endfunc
 
 ""
 " For debugging, execute a <Plug> command using execute:
-" :execute "normal \<Plug>DumpDebugString"
+" :execute "normal \<Plug>DumpDebugStringVar"
 "
-nnoremap <silent> <Plug>DumpDebugString :<C-U> :call <SID>debugFunctionWrapper(0)<CR>
-nnoremap <silent> <Plug>DumpDebugStringExpr :<C-U> :call <SID>debugFunctionWrapper(1)<CR>
+nnoremap <silent> <Plug>DumpDebugStringVar :<C-U>call <SID>debugFunctionWrapper(0)<CR>
+nnoremap <silent> <Plug>DumpDebugStringExpr :<C-U>call <SID>debugFunctionWrapper(1)<CR>
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo

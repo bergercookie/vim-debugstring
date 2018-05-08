@@ -149,7 +149,8 @@ this or other vim plugins
 * Use [vimdoc](https://github.com/google/vimdoc) to generate documentation from
     the `vim` docstring (instead of manually updating the .txt file). See the
     misc/build_doc for more on how this is done.
-* Use [vader](https://github.com/junegunn/vader.vim) for unittesting.
+* Use [vader](https://github.com/junegunn/vader.vim) for unittesting. Use
+    `test/run-tests.sh` to run them.
 
 
 ## TODO
@@ -158,14 +159,15 @@ this or other vim plugins
 - [ ] Method to delete all the debugging strings in current buffer
 - [x] Method to print name and contents of a variable
 - [ ] Add option for variable debugging in rest of langs
-- [ ] Make the counter buffer-specific
+- ~[ ]Make the counter buffer-specific~ Nope, we already have the filename &
+    line for file-specific text
 - [ ] Escape double single quotes vimscript variable printing
 - [x] Append to current line if that is empty
 - [x] Support repeat.vim
 - [ ] Use an assertion module
 - [x] Use vader.vim for TDD
 - [ ] Extend vader support for rest of languages
-- [ ] Use travis for CI
+- [x] Use travis for CI
 - [x] Bug with changing the filename of the current file
 - [x] Make vim-repeat dependency optional
 - [x] Turn supported languages into a table - what do we support in which

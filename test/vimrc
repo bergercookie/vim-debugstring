@@ -1,6 +1,9 @@
 filetype off
 let g:mapleader = ","
 
+nmap <Leader>ds  <Plug>DumpDebugStringVar
+nmap <Leader>dS  <Plug>DumpDebugStringExpr
+
 set runtimepath+=.
 set runtimepath+=vader.vim
 set runtimepath+=vim-repeat
@@ -11,4 +14,3 @@ syntax enable
 set nomore
 set noswapfile
 set viminfo=
-

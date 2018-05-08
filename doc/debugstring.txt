@@ -29,13 +29,16 @@ logging statements around the various code snippets that you want to test.
 The form and syntax of the logging statements target the language at hand
 (e.g., use printf() in C/C++ but puts() in Ruby)
 
+vim-debugstring should be compatible with Vim >= 7.4.313
+
+
 ==============================================================================
 CONFIGURATION                                             *debugstring-config*
 
 To add a logging statement either use the default normal mode mapping
 (|g:default_dump_debug_map|) or define your own:
 
-  * nmap <your-key-combination> <Plug>DumpDebugString
+  * nmap <your-key-combination> <Plug>DumpDebugStringVar
 
   * nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 

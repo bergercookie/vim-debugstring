@@ -4,5 +4,6 @@
 # Do not "cd" to any existing "test" dir from CDPATH!
 unset CDPATH
 
-cd "$(dirname "${BASH_SOURCE[0]}")" && vim -Nu vimrc -c 'Vader! basic.vader' \
-    > /dev/null
+cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+vim -Nu test/vimrc -c 'Vader! test/*'
+cd -
