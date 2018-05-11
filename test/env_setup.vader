@@ -1,2 +1,9 @@
 Before (setup):
   ResetDebugCounter
+
+  let l1_text = 4
+  let l2_text = 5
+  let l1_notext = 10
+  let l1_text_var = 11
+
+

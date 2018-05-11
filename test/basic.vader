@@ -1,72 +1,58 @@
-# Test case
-
-# mapleader is set in the local vimrc
-#
-# Line +Text: 3
-# Line -Text: 8
-
 Include: text_setup.vader
 Include: env_setup.vader
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ""
-" Standard usecase, buffer with some text
-Execute (C +std_debug +Text):
-  :set filetype=c
-  3
+" tests include the following
+" - Add Debugging string when I am in a line that has text + make sure the counter advances
+" - Add Debugging string when I am on an empty line
+" - Add a variable debugging string when I am in a line that has text
+After ():
+  execute l1_text - 1
   AssertEqual getline('.'), 'And each in your season', "Current line contents don't match"
-  Log join(getline(1,'$'), "\n")
   :normal ,ds
-  Log join(getline(1,'$'), "\n")
   :normal .
-  Log join(getline(1,'$'), "\n")
+  execute l1_notext
+  AssertEqual getline('.'), '', "Current line is not empty"
+  :normal ,ds
+  execute l1_text_var - 1
+  execute ":normal ,dSa**2 + b**2\<CR>"
 
-Then ():
-  4
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:4] DEBUGGING STRING ==> %d\n", 0);'
-  5
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:5] DEBUGGING STRING ==> %d\n", 1);'
+  execute l1_text
+  AssertEqual getline('.'), FormatStrForExpectedLine(GetFileForLang(&filetype, 1), l1_text, 0)
+  execute l2_text
+  AssertEqual getline('.'), FormatStrForExpectedLine(GetFileForLang(&filetype, 1), l2_text, 1)
+  execute l1_notext
+  AssertEqual getline('.'), FormatStrForExpectedLine(GetFileForLang(&filetype, 1), l1_notext, 2)
+  execute l1_text_var
+  AssertEqual getline('.'), FormatStrForExpectedLine(GetFileForLang(&filetype, 2), l1_text_var, -1)
 
 ================================================================================
 
 ""
-" What happens if there isn't any text in the current line? - cursor should stay
-" at the same line
-Execute (C +std_debug -Text):
+" Test cases - one for each supported language
+Execute (C):
   :set filetype=c
-  8
-  AssertEqual getline('.'), '', "Current line is not empty"
-  :normal ,ds
-
-Then ():
-  8
-  AssertEqual getline('.'), 'printf("[[Vader-workbench]:8] DEBUGGING STRING ==> %d\n", 0);'
+Execute (C++):
+  :set filetype=cpp
+Execute (CMake):
+  :set filetype=cmake
+Execute (Haskell):
+  :set filetype=haskell
+Execute (Java):
+  :set filetype=java
+Execute (Python):
+  :set filetype=python
+" Execute (Ruby):
+"   :set filetype=rb
+Execute (R):
+  :set filetype=r
+Execute (Shell):
+  :set filetype=sh
+Execute (Vim):
+  :set filetype=vim
 
 ================================================================================
 
-Execute (C +var_debug -Text TODO):
-  :set filetype=c
-Then ():
-================================================================================
-Execute (C +var_debug +Text TODO):
-  :set filetype=c
-Then ():
-================================================================================
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# cmake
-# cpp
-# fortran
-# haskell
-# javascript
-# java
-# php
-# python
-# ruby
-# r
-# sh
-# vim
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

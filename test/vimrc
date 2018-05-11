@@ -14,3 +14,27 @@ syntax enable
 set nomore
 set noswapfile
 set viminfo=
+
+
+fun! GetFileLine(filename,line)
+    return readfile(a:filename,'',a:line)[a:line-1]
+endfun
+
+
+fun! GetFileForLang(lang_name,line)
+  let l:path = fnamemodify(resolve(expand('%:p')), ':h')
+  let l:filename = l:path . '/test/ft/' . 'a.' . a:lang_name
+  return readfile(l:filename,'',a:line)[a:line-1]
+endfun
+
+""
+" Format the given str based on the expected line and the expected counter
+" given. Function searches for the $N$ identifiers in the string and replaces
+" them with the line and counter respectively.
+"
+" Returns the modified string.
+"
+fun! FormatStrForExpectedLine(str, line, cnt)
+  let l:strTmp = substitute(a:str, '\$1\$', a:line, "")
+  return substitute(l:strTmp, '\$2\$', a:cnt, "")
+endfun
