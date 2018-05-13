@@ -65,7 +65,7 @@ Javascript | :heavy_check_mark: | :x:
 PHP        | :heavy_check_mark: | :heavy_check_mark:
 Python     | :heavy_check_mark: | :heavy_check_mark:
 R          | :heavy_check_mark: | :heavy_check_mark:
-Ruby       | :heavy_check_mark: | :x:
+Ruby       | :heavy_check_mark: | :heavy_check_mark: 
 Shell      | :heavy_check_mark: | :heavy_check_mark:
 Vim        | :heavy_check_mark: | :heavy_check_mark:
 
@@ -92,7 +92,7 @@ Default mappings are: `<Leader>ds`, `<Leader>dS` respectively.
 
 ### Remarks - Debugging
 
-* Make sure that the filetype plugin is enabled. A line like `filetype plugin on` in
+* Make sure that `filetype plugin` is enabled. A line like `filetype plugin on` in
     your `.vimrc` should do the job.
 
 
@@ -106,15 +106,17 @@ debugstring depends on the following vim plugins:
 
 ### Using a runtimepath/package manager
 
-I would personally recommend using [Pathogen](https://github.com/tpope/vim-pathogen/) for
-installing the plugin but any other installation method (e.g.,
-[Vundle](https://github.com/VundleVim/Vundle.vim)) should do the job (if not
-please raise an
-[issue](https://github.com/bergercookie/vim-debugstring/issues) on Github)
+| Plugin manager | How to install |
+| :------------- | :------------- |
+| [Dein][1] | `call dein#add('bergercookie/vim-debugstring')` |
+| [minpac][2] | `call minpac#add('bergercookie/vim-debugstring')` |
+| [Pathogen][3] | `git clone https://github.com/bergercookie/vim-debugstring.git ~/.vim/bundle/vim-debugstring` |
+| [Plug][4] | `Plug 'bergercookie/vim-debugstring'` |
+| [Vundle][5] | `Plugin 'bergercookie/vim-debugstring'` |
+| manual | copy all of the files into your `.vim` directory (or `~/.config/nvim` if you're using neovim)|
 
-```bash
-git clone https://github.com/tpope/vim-repeat ~/.vim/bundle/vim-repeat
-git clone https://github.com/bergercookie/vim-debugstring.git ~/.vim/bundle/vim-debugstring
+
+Plugin also utilizes [vim-repeat](https://github.com/tpope/vim-repeat) if the latter is installed.
 
 ```
 
@@ -155,22 +157,19 @@ this or other vim plugins
 
 ## TODO
 
-- [ ] Method to delete all the debugging strings in all "touched" buffers
-- [ ] Method to delete all the debugging strings in current buffer
+- [ ] Method to delete all the debugging strings in current buffer / all "touched" buffers - see far.vim
 - [x] Method to print name and contents of a variable
-- [ ] Add option for variable debugging in rest of langs
 - ~[ ]Make the counter buffer-specific~ Nope, we already have the filename &
     line for file-specific text
 - [ ] Escape double single quotes vimscript variable printing
 - [x] Append to current line if that is empty
 - [x] Support repeat.vim
-- [ ] Use an assertion module
+- [x] Use an assertion module - vader
 - [x] Use vader.vim for TDD
-- [ ] Extend vader support for rest of languages
+- [x] Extend vader support for rest of languages
 - [x] Use travis for CI
 - [x] Bug with changing the filename of the current file
 - [x] Make vim-repeat dependency optional
 - [x] Turn supported languages into a table - what do we support in which
     language
 - [x] Make vim-repeat dependency optional
-- [] Have .vader test filetypes use the same function as standard vim files
