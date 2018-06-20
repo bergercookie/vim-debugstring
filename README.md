@@ -65,7 +65,8 @@ Javascript | :heavy_check_mark: | :x:
 PHP        | :heavy_check_mark: | :heavy_check_mark:
 Python     | :heavy_check_mark: | :heavy_check_mark:
 R          | :heavy_check_mark: | :heavy_check_mark:
-Ruby       | :heavy_check_mark: | :heavy_check_mark: 
+Ruby       | :heavy_check_mark: | :heavy_check_mark:
+Rust       | :x:                | :x:
 Shell      | :heavy_check_mark: | :heavy_check_mark:
 Vim        | :heavy_check_mark: | :heavy_check_mark:
 
@@ -117,8 +118,6 @@ debugstring depends on the following vim plugins:
 
 
 Plugin also utilizes [vim-repeat](https://github.com/tpope/vim-repeat) if the latter is installed.
-
-```
 
 ### Manual installation
 
