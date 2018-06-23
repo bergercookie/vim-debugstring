@@ -50,7 +50,7 @@ Execute (R):
 Execute (Ruby):
   :set filetype=ruby
 Execute (Rust):
-  :set filetype=rs
+  :set filetype=rust
 Execute (Shell):
   :set filetype=sh
 Execute (Vim):
