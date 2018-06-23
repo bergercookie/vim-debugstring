@@ -49,6 +49,8 @@ Execute (R):
   :set filetype=r
 Execute (Ruby):
   :set filetype=ruby
+Execute (Rust):
+  :set filetype=rs
 Execute (Shell):
   :set filetype=sh
 Execute (Vim):

@@ -5,5 +5,5 @@
 unset CDPATH
 
 cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
-vim -Nu test/vimrc -c 'Vader! test/*'
+command vim -Nu test/vimrc -c 'Vader! test/*'
 cd -

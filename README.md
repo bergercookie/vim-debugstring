@@ -66,7 +66,7 @@ PHP        | :heavy_check_mark: | :heavy_check_mark:
 Python     | :heavy_check_mark: | :heavy_check_mark:
 R          | :heavy_check_mark: | :heavy_check_mark:
 Ruby       | :heavy_check_mark: | :heavy_check_mark:
-Rust       | :x:                | :x:
+Rust       | :heavy_check_mark: | :heavy_check_mark:
 Shell      | :heavy_check_mark: | :heavy_check_mark:
 Vim        | :heavy_check_mark: | :heavy_check_mark:
 
