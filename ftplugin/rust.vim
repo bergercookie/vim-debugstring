@@ -1,5 +1,5 @@
 function! s:DebugStringFunBase(desc, var)
-    let l:debug_str = 'println!("' . a:desc . ' {}", ' . a:var . ');'
+    let l:debug_str = 'println!("' . a:desc . '{}", ' . a:var . ');'
     return l:debug_str
 endfunc
 
