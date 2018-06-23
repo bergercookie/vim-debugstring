@@ -45,30 +45,33 @@ Currently the following languages are supported. First column corresponds to the
 standard debugging string while the second to the case of debugging for a
 specific variable.
 
-```c++
-// Debug String
-std::cout << "[a.c:4] DEBUGGING STRING ==> " << 0 << std::endl;
-
-// Debug Variable
-std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
-```
-
-Lang       | Debug String       | Debug Variable
----        | ---                | ---
-C          | :heavy_check_mark: | :heavy_check_mark:
-C++        | :heavy_check_mark: | :heavy_check_mark:
-CMake      | :heavy_check_mark: | :heavy_check_mark:
-Fortran    | :heavy_check_mark: | :x:
-Haskell    | :heavy_check_mark: | :heavy_check_mark:
-Java       | :heavy_check_mark: | :heavy_check_mark:
-Javascript | :heavy_check_mark: | :x:
-PHP        | :heavy_check_mark: | :heavy_check_mark:
-Python     | :heavy_check_mark: | :heavy_check_mark:
-R          | :heavy_check_mark: | :heavy_check_mark:
-Ruby       | :heavy_check_mark: | :heavy_check_mark:
-Rust       | :heavy_check_mark: | :heavy_check_mark:
-Shell      | :heavy_check_mark: | :heavy_check_mark:
-Vim        | :heavy_check_mark: | :heavy_check_mark:
+Lang         | Debug String       | Debug Variable
+---          | ---                | ---
+Awk          | :x:                | :x:
+C            | :heavy_check_mark: | :heavy_check_mark:
+C#           | :x:                | :x:
+C++          | :heavy_check_mark: | :heavy_check_mark:
+CMake        | :heavy_check_mark: | :heavy_check_mark:
+D            | :x:                | :x:
+Fortran      | :heavy_check_mark: | :heavy_check_mark:
+Go           | :x:                | :x:
+Haskell      | :heavy_check_mark: | :heavy_check_mark:
+Java         | :heavy_check_mark: | :heavy_check_mark:
+Javascript   | :heavy_check_mark: | :x:
+Julia        | :x:                | :x:
+Lua          | :x:                | :x:
+Matlab       | :x:                | :x:
+PHP          | :heavy_check_mark: | :heavy_check_mark:
+Perl         | :x:                | :x:
+Python       | :heavy_check_mark: | :heavy_check_mark:
+R            | :heavy_check_mark: | :heavy_check_mark:
+Ruby         | :heavy_check_mark: | :heavy_check_mark:
+Rust         | :heavy_check_mark: | :heavy_check_mark:
+Scala        | :x:                | :x:
+Shell        | :heavy_check_mark: | :heavy_check_mark:
+Swift        | :x:                | :x:
+Vim          | :heavy_check_mark: | :heavy_check_mark:
+Visual Basic | :x:                | :x:
 
 - Support for debugging variable expressions e.g., the values of variables or
     arbitrary expressions at certain parts of your code
@@ -90,6 +93,17 @@ nnoremap <a-second-key-combination> <Plug>DumpDebugStringExpr
 ```
 
 Default mappings are: `<Leader>ds`, `<Leader>dS` respectively.
+
+An example of using it in a C++ file is given below:
+
+```c++
+// Debug String
+std::cout << "[a.c:4] DEBUGGING STRING ==> " << 0 << std::endl;
+
+// Debug Variable
+std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
+```
+
 
 ### Remarks - Debugging
 
