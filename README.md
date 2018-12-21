@@ -57,7 +57,7 @@ Fortran      | :heavy_check_mark: | :heavy_check_mark:
 Go           | :x:                | :x:
 Haskell      | :heavy_check_mark: | :heavy_check_mark:
 Java         | :heavy_check_mark: | :heavy_check_mark:
-Javascript   | :heavy_check_mark: | :x:
+Javascript   | :heavy_check_mark: | :heavy_check_mark:
 Julia        | :x:                | :x:
 Lua          | :x:                | :x:
 Matlab       | :x:                | :x:
