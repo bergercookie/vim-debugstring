@@ -60,6 +60,8 @@ Execute (Shell):
   :set filetype=sh
 Execute (Vim):
   :set filetype=vim
+Execute (Fortran):
+  :set filetype=fortran
 
 ================================================================================
 
