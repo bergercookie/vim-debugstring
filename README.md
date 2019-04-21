@@ -26,13 +26,13 @@ i.e., scatter logging statements around the various code snippets that you want
 to test.
 
 
-### Demos
+## Demos
 
-#### Standard debugging - C++
+### Standard debugging - C++
 
 ![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp.gif)
 
-#### Debugging for expression/variables - C++
+### Debugging for expression/variables - C++
 
 ![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp_var.gif)
 
@@ -130,13 +130,14 @@ debugstring depends on the following vim plugins:
 | [Vundle][5] | `Plugin 'bergercookie/vim-debugstring'` |
 | manual | copy all of the files into your `.vim` directory (or `~/.config/nvim` if you're using neovim)|
 
+[1]: https://github.com/Shougo/dein.vim
+[2]: https://github.com/k-takata/minpac
+[3]: https://github.com/tpope/vim-pathogen
+[4]: https://github.com/junegunn/vim-plug
+[5]: https://github.com/VundleVim/Vundle.vim
 
-Plugin also utilizes [vim-repeat](https://github.com/tpope/vim-repeat) if the latter is installed.
-
-### Manual installation
-
-Copy the plugin files to their corresponding directories under `${HOME}/.vim`
-(Linux) or `$HOME/vimfiles` (Windows).
+Plugin also utilizes [vim-repeat](https://github.com/tpope/vim-repeat) if the
+latter is installed.
 
 ## Contributing
 
@@ -153,8 +154,9 @@ file
 
 In case you like the plugin, you might as well [star it on
 Github](https://github.com/bergercookie/vim-debugstring) or [rate it on
-vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634)
-
+vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634) Also feel
+free to check my [other
+plugins](https://github.com/bergercookie?tab=repositories)
 
 ## Notes on Development
 
@@ -172,9 +174,6 @@ this or other vim plugins
     git clone https://github.com/junegunn/vader.vim.git
     git clone https://github.com/tpope/vim-repeat.git
     ```
-
-
-
 
 ## TODO
 
