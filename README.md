@@ -28,13 +28,17 @@ to test.
 
 ## Demos
 
-### Standard debugging - C++
+### Finding a segfault
 
-![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp.gif)
+![demo_gif](misc/find-segfault.gif)
 
-### Debugging for expression/variables - C++
+### Control flow
 
-![demo_gif](https://github.com/bergercookie/vim-debugstring/blob/master/misc/demo_cpp_var.gif)
+![demo_gif2](misc/control-flow.gif)
+
+### Expression evaluation
+
+![demo_gif3](misc/expression.gif)
 
 ## Features
 
