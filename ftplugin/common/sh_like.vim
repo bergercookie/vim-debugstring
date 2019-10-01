@@ -12,5 +12,3 @@ function! DebugStringFunShellBase(desc, ...)
     let l:debug_str .= '"'
     return l:debug_str
 endfunc
-
-
