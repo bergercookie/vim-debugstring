@@ -4,7 +4,7 @@ function! s:DebugStringFun()
 endfunc
 
 function! s:DebugVarFun(desc, var)
-    let l:debug_str = 'console.log(`' . a:desc . '${' . a:var . '}`)'
+    let l:debug_str = 'console.log(`' . a:desc . '`, ' . a:var . ')'
     return l:debug_str
 endfunc
 
