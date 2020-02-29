@@ -51,6 +51,7 @@ specific variable.
 
 Lang         | Debug String       | Debug Variable
 ---          | ---                | ---
+Arduino      | :heavy_check_mark: | :heavy_check_mark:
 Awk          | :x:                | :x:
 C            | :heavy_check_mark: | :heavy_check_mark:
 C#           | :x:                | :x:

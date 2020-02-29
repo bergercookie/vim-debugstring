@@ -1,0 +1,2 @@
+Serial.println("[[Vader-workbench]:$1$] DEBUGGING STRING ==> $2$")
+Serial.print("a**2 + b**2: "); Serial.println(a**2 + b**2)

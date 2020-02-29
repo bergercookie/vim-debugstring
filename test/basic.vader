@@ -62,7 +62,7 @@ Execute (Vim):
   :set filetype=vim
 Execute (Fortran):
   :set filetype=fortran
+Execute (Arduino):
+  :set filetype=arduino
 
 ================================================================================
-
-
