@@ -19,7 +19,7 @@
 
 ## Purpose
 
-debugstring aims to automate standard debugging operations (e.g., segfaults).
+`debugstring` aims to automate standard debugging operations (e.g., segfaults).
 It does that by facilitating the ubiquitous
 [printf()-debugging](https://everything2.com/title/printf%28%29%20debugging)
 i.e., scatter logging statements around the various code snippets that you want
@@ -118,14 +118,6 @@ std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
 
 ## Installation
 
-### Dependencies
-
-debugstring depends on the following vim plugins:
-
-- vim-repeat [OPTIONAL]
-
-### Using a runtimepath/package manager
-
 | Plugin manager | How to install |
 | :------------- | :------------- |
 | [Dein][1] | `call dein#add('bergercookie/vim-debugstring')` |
@@ -141,8 +133,12 @@ debugstring depends on the following vim plugins:
 [4]: https://github.com/junegunn/vim-plug
 [5]: https://github.com/VundleVim/Vundle.vim
 
-Plugin also utilizes [vim-repeat](https://github.com/tpope/vim-repeat) if the
-latter is installed.
+
+### Dependencies
+
+`debugstring` depends on the following vim plugins:
+
+- vim-repeat [OPTIONAL]
 
 ## Contributing
 

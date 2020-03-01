@@ -3,8 +3,6 @@
 " Version:    0.1
 
 
-
-" TODO: Rewrite these instructions
 ""
 " @section Introduction, intro
 "
@@ -183,6 +181,10 @@ function! s:debugFunctionWrapper(mode, ...)
             let l:expr = input('Input Expression: ')
         else
             let l:expr = a:1
+        endif
+
+        if empty(l:expr)
+            return
         endif
 
         AddDebugStringExpr(l:expr)
