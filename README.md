@@ -59,6 +59,7 @@ C++          | :heavy_check_mark: | :heavy_check_mark:
 CMake        | :heavy_check_mark: | :heavy_check_mark:
 D            | :x:                | :x:
 Fortran      | :heavy_check_mark: | :heavy_check_mark:
+Fish-Shell   | :heavy_check_mark: | :heavy_check_mark:
 Go           | :x:                | :x:
 Haskell      | :heavy_check_mark: | :heavy_check_mark:
 Java         | :heavy_check_mark: | :heavy_check_mark:
