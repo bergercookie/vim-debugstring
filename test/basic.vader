@@ -66,5 +66,7 @@ Execute (Arduino):
   :set filetype=arduino
 Execute (Makefile):
   :set filetype=make
+Execute (Dockerfile):
+  :set filetype=Dockerfile
 
 ================================================================================

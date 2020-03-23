@@ -58,6 +58,7 @@ C#           | :x:                | :x:
 C++          | :heavy_check_mark: | :heavy_check_mark:
 CMake        | :heavy_check_mark: | :heavy_check_mark:
 D            | :x:                | :x:
+Dockerfile   | :heavy_check_mark: | :heavy_check_mark:
 Fish-Shell   | :heavy_check_mark: | :heavy_check_mark:
 Fortran      | :heavy_check_mark: | :heavy_check_mark:
 Go           | :x:                | :x:
