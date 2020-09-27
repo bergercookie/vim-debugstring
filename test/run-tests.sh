@@ -3,9 +3,10 @@
 
 set -e
 
-# Do not "cd" to any existing "test" dir from CDPATH!
-unset CDPATH
 
-cd "$(dirname "$(dirname "${BASH_SOURCE[0]}")")"
+oldpwd=$PWD
+cd $(dirname $(readlink -f $0))/..
+test -d vader.vim || git clone https://github.com/junegunn/vader.vim.git
+test -d vim-repeat || git clone https://github.com/tpope/vim-repeat.git
 command vim -Nu test/vimrc -c 'Vader! test/*'
-cd -
+cd $oldpwd

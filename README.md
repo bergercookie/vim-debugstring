@@ -68,7 +68,7 @@ Haskell      | :heavy_check_mark: | :heavy_check_mark:
 Java         | :heavy_check_mark: | :heavy_check_mark:
 Javascript   | :heavy_check_mark: | :heavy_check_mark:
 Julia        | :x:                | :x:
-Lua          | :x:                | :x:
+Lua          | :heavy_check_mark: | :heavy_check_mark:
 Makefile     | :heavy_check_mark: | :heavy_check_mark:
 Matlab       | :x:                | :x:
 PHP          | :heavy_check_mark: | :heavy_check_mark:

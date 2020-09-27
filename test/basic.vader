@@ -68,5 +68,7 @@ Execute (Makefile):
   :set filetype=make
 Execute (Dockerfile):
   :set filetype=Dockerfile
+Execute (Lua):
+  :set filetype=lua
 
 ================================================================================
