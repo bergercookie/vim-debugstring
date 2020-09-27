@@ -28,6 +28,8 @@ to test.
 
 ## Demos
 
+[Presentation at Vim-London](https://www.youtube.com/watch?v=cJIoH5r2zSk)
+
 ### Finding a segfault
 
 ![demo_gif](misc/find-segfault.gif)
