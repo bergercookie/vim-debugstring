@@ -1,2 +1,2 @@
-echo '[[Vader-workbench]:$1$] DEBUGGING STRING ==> ' . string($2$)
-echo 'a**2 + b**2: ' . string(a**2 + b**2)
+echom '[[Vader-workbench]:$1$] DEBUGGING STRING ==> ' . string($2$)
+echom 'a**2 + b**2: ' . string(a**2 + b**2)
