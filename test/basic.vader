@@ -62,6 +62,8 @@ Execute (Vim):
   :set filetype=vim
 Execute (Fortran):
   :set filetype=fortran
+Execute (Go):
+  :set filetype=go
 Execute (Arduino):
   :set filetype=arduino
 Execute (Makefile):
