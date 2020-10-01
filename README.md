@@ -173,14 +173,15 @@ this or other vim plugins
     the `vim` docstring (instead of manually updating the .txt file). See the
     misc/build_doc for more on how this is done.
 * Use [vader](https://github.com/junegunn/vader.vim) for unittesting. Use
-    `test/run-tests.sh` to run them. For this to run you have to first git clone
-    vim-repeat and vim-vader in the root of this repo:
+    `test/run-tests.sh` to run them:
 
-    ```sh
-    git clone https://github.com/junegunn/vader.vim.git
-    git clone https://github.com/tpope/vim-repeat.git
     ```
+    vim -Nu test/vimrc
+    :set rtp+=vader.vim/plugin
+    :set rtp+=vim-repeat/autoload
 
+    :Vader test/*
+    ```
 ## TODO
 
 - [ ] Method to delete all the debugging strings in current buffer / all "touched" buffers - see far.vim
