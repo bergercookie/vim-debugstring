@@ -100,9 +100,10 @@ debugging times.
 ```vim
 nnoremap <your-key-combination> <Plug>DumpDebugString
 nnoremap <a-second-key-combination> <Plug>DumpDebugStringExpr
+nnoremap <a-third-key-combination> <Plug>DumpDebugStringCexpr
 ```
 
-Default mappings are: `<Leader>ds`, `<Leader>dS` respectively.
+Default mappings are: `<Leader>ds`, `<Leader>dS`, `<Leader>DS` respectively.
 
 An example of using it in a C++ file is given below:
 
