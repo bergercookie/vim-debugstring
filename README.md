@@ -63,7 +63,7 @@ D            | :x:                | :x:
 Dockerfile   | :heavy_check_mark: | :heavy_check_mark:
 Fish-Shell   | :heavy_check_mark: | :heavy_check_mark:
 Fortran      | :heavy_check_mark: | :heavy_check_mark:
-Go           | :x:                | :x:
+Go           | :heavy_check_mark: | :heavy_check_mark:
 Haskell      | :heavy_check_mark: | :heavy_check_mark:
 Java         | :heavy_check_mark: | :heavy_check_mark:
 Javascript   | :heavy_check_mark: | :heavy_check_mark:
