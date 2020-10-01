@@ -77,6 +77,7 @@ set cpoptions&vim
 let s:modes = {
             \ 'std_debug': 0,
             \ 'var_debug': 1,
+            \ 'var_debug_cexpr': 2,
             \}
 
 
@@ -131,6 +132,11 @@ if !hasmapto('<Plug>DumpDebugStringExpr')
     "
     nmap <unique> <Leader>dS  <Plug>DumpDebugStringExpr
 endif
+if !hasmapto('<Plug>DumpDebugStringCexpr')
+    ""@setting default_dump_debug_map
+    "
+    nmap <unique> <Leader>DS  <Plug>DumpDebugStringCexpr
+endif
 
 ""
 " Set this to false if you want to print just the logging statement without any
@@ -171,20 +177,23 @@ function! s:debugFunctionWrapper(mode, ...)
           call repeat#set("\<Plug>DumpDebugStringVar<CR>")
         endif
 
-    elseif a:mode ==# s:modes['var_debug']
+    elseif a:mode ==# s:modes['var_debug'] || a:mode ==# s:modes['var_debug_cexpr']
         if !exists(':AddDebugStringExpr')
             echoerr "Command AddDebugStringExpr isn't implemented for filetype \"" . &filetype . "\""
             return 0
         endif
-        let l:expr = ''
-        if len(a:000) ==# 0
-            let l:expr = input('Input Expression: ')
+        if a:mode ==# s:modes['var_debug_cexpr']
+          let l:expr = expand("<cexpr>")
         else
-            let l:expr = a:1
-        endif
-
-        if empty(l:expr)
-            return
+          let l:expr = ''
+          if len(a:000) ==# 0
+              let l:expr = input('Input Expression: ')
+          else
+              let l:expr = a:1
+          endif
+          if empty(l:expr)
+              return
+          endif
         endif
 
         AddDebugStringExpr(l:expr)
@@ -223,6 +232,7 @@ endfunc
 "
 nnoremap <silent> <Plug>DumpDebugStringVar :<C-U>call <SID>debugFunctionWrapper(0)<CR>
 nnoremap <silent> <Plug>DumpDebugStringExpr :<C-U>call <SID>debugFunctionWrapper(1)<CR>
+nnoremap <silent> <Plug>DumpDebugStringCexpr :<C-U>call <SID>debugFunctionWrapper(2)<CR>
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
