@@ -139,14 +139,6 @@ if !hasmapto('<Plug>DumpDebugStringCexpr')
 endif
 
 ""
-" Set this to false if you want to print just the logging statement without any
-" additional directive like '#include <stsdio.h'
-" Applicable only in libraries that the logging directive is part of an external
-" library
-"
-let g:debugstringAlwaysIncludeHeader = 0 " Include Header in place?
-
-""
 " Wrapper around the low-level debug* methods.
 " It also takes care of incrementing the g:debugCounter
 "

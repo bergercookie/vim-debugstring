@@ -42,11 +42,6 @@ To add a logging statement either use the default normal mode mapping
 
   * nmap <a-second-key-combination> <Plug>DumpDebugStringExpr
 
-                                            *g:debugstringAlwaysIncludeHeader*
-Set this to false if you want to print just the logging statement without any
-additional directive like '#include <stsdio.h' Applicable only in libraries
-that the logging directive is part of an external library
-
 
 ==============================================================================
 COMMANDS                                                *debugstring-commands*

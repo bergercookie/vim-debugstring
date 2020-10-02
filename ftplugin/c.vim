@@ -4,12 +4,6 @@ endif
 
 function! s:DebugStringFunBase(desc, var)
     let l:debug_str = "printf(\"" . a:desc . "%d\\n\", " . a:var . ");"
-
-    if g:debugstringAlwaysIncludeHeader
-        let l:incStr = '#include <stdio.h>; '
-        let l:debug_str = l:incStr . l:debug_str
-    endif
-
     return l:debug_str
 endfunc
 

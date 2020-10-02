@@ -1,16 +1,17 @@
 let g:debugstring_loaded_cpp_vim = 1
 
 function! s:DebugStringFunBase(desc, var)
-    let l:debug_str = 'std::cout << "' . a:desc
+    " Escape quotes in description
+    let l:desc = a:desc
+    if stridx('"', l:desc)
+        let l:desc = substitute(l:desc, '"', '\\"', "g")
+    endif
+
+    let l:debug_str = 'std::cout << "' . l:desc
                 \ . '" << '
                 \ . a:var
                 \ . ' << '
                 \ . 'std::endl;'
-
-    if g:debugstringAlwaysIncludeHeader
-        let l:incStr = '#include <iostream>; '
-        let l:debug_str = l:incStr . l:debug_str
-    endif
 
     return l:debug_str
 endfunc

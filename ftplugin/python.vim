@@ -1,5 +1,11 @@
 function! s:DebugStringFunBase(desc, var)
-    let l:debug_str = 'print("' . a:desc . '", ' . a:var . ')'
+    " Escape quotes in description
+    let l:desc = a:desc
+    if stridx('"', l:desc)
+        let l:desc = substitute(l:desc, '"', '\\"', "g")
+    endif
+
+    let l:debug_str = 'print("' . l:desc . '", ' . a:var . ')'
     return l:debug_str
 endfunc
 
