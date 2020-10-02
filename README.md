@@ -161,7 +161,7 @@ file
 
 In case you like the plugin, you might as well [star it on
 Github](https://github.com/bergercookie/vim-debugstring) or [rate it on
-vim.org](https://vim.sourceforge.io/scripts/script.php?script_id=5634) Also feel
+vim.org](https://vim8.org/scripts/script.php?script_id=5634) Also feel
 free to check my [other
 plugins](https://github.com/bergercookie?tab=repositories)
 

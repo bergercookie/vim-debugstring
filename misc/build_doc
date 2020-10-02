@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-vimdoc "${BUNDLE}/vim-debugstring"
-"${BUNDLE}/vim-debugstring/misc/add_logo_to_help"
+ROOT=$(dirname $(readlink -f $0))/..
+
+(
+cd $ROOT
+vimdoc .
+./misc/add_logo_to_help
+)
 
 
