@@ -46,6 +46,14 @@ to test.
 
 - The form and syntax of the logging statements target the language at hand
 (e.g., use `printf()` in C/C++ but `puts()` in Ruby)
+- Support for debugging variable expressions e.g., the values of variables or
+    arbitrary expressions at certain parts of your code
+- Support for <cexpr>: Place your cursor over the variable you want to print and
+    press `<leader>DS`. It will create a debugging string for that variable
+- Support for [vim-repeat](https://github.com/tpope/vim-repeat). No
+    need for repeat the same mapping, or rewrite the lengthy expression that you
+    want to monitor, just use the `.` character
+
 
 Currently the following languages are supported. First column corresponds to the
 standard debugging string while the second to the case of debugging for a
@@ -83,13 +91,7 @@ Swift        | :x:                | :x:
 Vim          | :heavy_check_mark: | :heavy_check_mark:
 Visual Basic | :x:                | :x:
 
-- Support for debugging variable expressions e.g., the values of variables or
-    arbitrary expressions at certain parts of your code
-- Support for [vim-repeat](https://github.com/tpope/vim-repeat). No
-    need for repeat the same mapping, or rewrite the lengthy expression that you
-    want to monitor, just use the `.` character
-
-For a more detailed outline of `debugstring` check
+For a more detailed description of `debugstring` check
 [doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)
 
 ## Usage
@@ -115,7 +117,6 @@ std::cout << "[a.c:4] DEBUGGING STRING ==> " << 0 << std::endl;
 std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
 ```
 
-
 ### Remarks - Debugging
 
 * Make sure that `filetype plugin` is enabled. A line like `filetype plugin on` in
@@ -138,7 +139,6 @@ std::cout << "[a.c:4] a_variable: " << a_variable << std::endl;
 [3]: https://github.com/tpope/vim-pathogen
 [4]: https://github.com/junegunn/vim-plug
 [5]: https://github.com/VundleVim/Vundle.vim
-
 
 ### Dependencies
 

@@ -187,13 +187,14 @@ function! s:debugFunctionWrapper(mode, ...)
         else
           let l:expr = ''
           if len(a:000) ==# 0
+              " TODO enable autocompletion
               let l:expr = input('Input Expression: ')
           else
               let l:expr = a:1
           endif
-          if empty(l:expr)
-              return
-          endif
+        endif
+        if empty(l:expr)
+            return
         endif
 
         AddDebugStringExpr(l:expr)
@@ -237,3 +238,4 @@ nnoremap <silent> <Plug>DumpDebugStringCexpr :<C-U>call <SID>debugFunctionWrappe
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
 
+" vim shiftwidth=4
