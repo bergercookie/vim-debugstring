@@ -7,7 +7,6 @@ function! s:DebugStringFun(desc, ...)
     else
         return DebugStringFunShellBase(a:desc, a:1)
     endif
-
 endfunc
 
 command! -buffer -nargs=0 AddDebugString

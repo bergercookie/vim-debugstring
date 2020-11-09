@@ -90,6 +90,7 @@ Shell        | :heavy_check_mark: | :heavy_check_mark:
 Swift        | :x:                | :x:
 Vim          | :heavy_check_mark: | :heavy_check_mark:
 Visual Basic | :x:                | :x:
+Zsh          | :heavy_check_mark: | :heavy_check_mark:
 
 For a more detailed description of `debugstring` check
 [doc/debugstring.txt](https://github.com/bergercookie/vim-debugstring/blob/master/doc/debugstring.txt)

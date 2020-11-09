@@ -58,6 +58,8 @@ Execute (Ruby):
   :set filetype=ruby
 Execute (Shell):
   :set filetype=sh
+Execute (Zsh):
+  :set filetype=zsh
 Execute (Vim):
   :set filetype=vim
 Execute (Fortran):
