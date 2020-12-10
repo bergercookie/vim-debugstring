@@ -38,6 +38,8 @@ Execute (C):
   :set filetype=c
 Execute (C++):
   :set filetype=cpp
+Execute (C#):
+  :set filetype=cs
 Execute (CMake):
   :set filetype=cmake
 Execute (Haskell):
