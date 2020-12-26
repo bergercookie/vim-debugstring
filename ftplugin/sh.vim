@@ -1,3 +1,5 @@
+" Contents should be identical for zsh, sh - not creating symlinks to make it
+" compatible for potential Windows users.
 let g:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 function! s:DebugStringFun(desc, ...)
