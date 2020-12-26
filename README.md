@@ -88,6 +88,7 @@ Rust         | :heavy_check_mark: | :heavy_check_mark:
 Scala        | :x:                | :x:
 Shell        | :heavy_check_mark: | :heavy_check_mark:
 Swift        | :x:                | :x:
+Typescript   | :heavy_check_mark: | :heavy_check_mark:
 Vim          | :heavy_check_mark: | :heavy_check_mark:
 Visual Basic | :x:                | :x:
 Zsh          | :heavy_check_mark: | :heavy_check_mark:
