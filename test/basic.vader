@@ -46,6 +46,8 @@ Execute (Java):
   :set filetype=java
 Execute (Javascript):
   :set filetype=javascript
+Execute (Typescript):
+  :set filetype=typescript
 Execute (Python):
   :set filetype=python
 Execute (R):
