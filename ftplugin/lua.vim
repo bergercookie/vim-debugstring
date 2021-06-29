@@ -1,5 +1,5 @@
 function! s:DebugStringFunBase(desc, var)
-    let l:debug_str = 'print("' . a:desc . '" .. ' . a:var . ')'
+    let l:debug_str = 'print("' . a:desc . '" .. tostring(' . a:var . '))'
     return l:debug_str
 endfunc
 
